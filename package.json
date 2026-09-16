@@ -1,0 +1,28 @@
+{
+  "name": "daomotu",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "刀模图在线生成器 - 参数化纸箱/纸盒展开图与导出",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.186.0",
+    "vite-plugin-pwa": "^1.3.0",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^4.5.2",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5"
+  }
+}
