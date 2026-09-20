@@ -89,7 +89,7 @@ export async function toPDF(result: DielineResult, dims?: DimOptions): Promise<U
 
   // 尺寸标注：灰细线 + 文字（标注文字为 ASCII 数字，内置字体可覆盖）
   const dimColor = rgb(0.45, 0.5, 0.58);
-  const dimSize = 3.3 * MM; // 字高 pt
+  const dimSize = 5 * MM; // 字高 pt（5mm，大幅面刀模图可读）
   for (const m of marks) {
     const lines: [typeof m.a, typeof m.b][] = [[m.a, m.b], ...(m.ext ?? [])];
     for (const [a, b] of lines) {

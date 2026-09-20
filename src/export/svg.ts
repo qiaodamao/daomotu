@@ -37,7 +37,7 @@ function dimsToSvg(marks: DimMark[]): string {
     .map((m) => {
       const lines = [ln(m.a, m.b), ...(m.ext ?? []).map(([a, b]) => ln(a, b))].join('\n');
       const rot = m.vertical ? ` transform="rotate(-90 ${r3(m.tx)} ${r3(m.ty)})"` : '';
-      const text = `    <text x="${r3(m.tx)}" y="${r3(m.ty)}"${rot} font-size="3.2" font-family="Helvetica, Arial, sans-serif" fill="#475569" stroke="none" text-anchor="middle" dominant-baseline="central">${m.text}</text>`;
+      const text = `    <text x="${r3(m.tx)}" y="${r3(m.ty)}"${rot} font-size="5" font-family="Helvetica, Arial, sans-serif" fill="#475569" stroke="none" text-anchor="middle" dominant-baseline="central">${m.text}</text>`;
       return `${lines}\n${text}`;
     })
     .join('\n');
