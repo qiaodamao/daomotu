@@ -96,8 +96,8 @@ export function computeDimMarks(result: DielineResult, opts: DimOptions): DimMar
       ty: (bb.min.y + bb.max.y) / 2,
       vertical: true,
       ext: [
-        [{ x: bb.min.x, y: bb.min.y }, { x: x + over, y: bb.min.y }],
-        [{ x: bb.min.x, y: bb.max.y }, { x: x + over, y: bb.max.y }],
+        [{ x: bb.max.x, y: bb.min.y }, { x: x + over, y: bb.min.y }],
+        [{ x: bb.max.x, y: bb.max.y }, { x: x + over, y: bb.max.y }],
       ],
     });
   }

@@ -110,10 +110,10 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <div className="brand">
+        <a className="brand" href="/" title="返回首页">
           <img className="brand-logo" src="/logo.svg" alt="Daomotu" width="24" height="24" />
           <b>刀模图生成器</b>
-        </div>
+        </a>
 
         <div className="view-tabs" role="tablist">
           <button type="button" className={`tab ${view === '2d' ? 'active' : ''}`} onClick={() => setView('2d')}>

@@ -201,7 +201,7 @@ function drawDims(ctx: CanvasRenderingContext2D, bb: { min: { x: number; y: numb
   ctx.beginPath();
   ctx.moveTo(x0, wy);
   ctx.lineTo(x1, wy);
-  ctx.moveTo(x0, y0);
+  ctx.moveTo(x0, y1);
   ctx.lineTo(x0, wy + 4);
   ctx.moveTo(x1, y1);
   ctx.lineTo(x1, wy + 4);

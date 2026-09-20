@@ -11,8 +11,10 @@ import { fefco0203 } from './builders/fefco0203';
 import { shortFlapBox } from './builders/shortFlapBox';
 import { windowBox } from './builders/windowBox';
 import { mailer0427 } from './builders/mailer0427';
+import { mailerFlat } from './builders/mailerFlat';
 import { mailerDouble } from './builders/mailerDouble';
 import { autobottom0700 } from './builders/autobottom0700';
+import { pillowBox } from './builders/pillowBox';
 import { tuckTuckBox } from './builders/tuckTuckBox';
 import { reverseTuck } from './builders/reverseTuck';
 import { boxLid } from './builders/boxLid';
@@ -21,6 +23,7 @@ import { cakeBox } from './builders/cakeBox';
 import { fruitBox } from './builders/fruitBox';
 import { onePageBox } from './builders/onePageBox';
 import { bookBox } from './builders/bookBox';
+import { rollTray0422, rollTray0421, trayEarlock427 } from './builders/rollTray';
 
 export interface BoxBuilder {
   id: string;
@@ -40,8 +43,12 @@ export const REGISTRY: BoxBuilder[] = [
   shortFlapBox,
   windowBox,
   fruitBox,
+  rollTray0422,
+  rollTray0421,
+  trayEarlock427,
   // 快递 / 电商
   mailer0427,
+  mailerFlat,
   mailerDouble,
   cakeBox,
   onePageBox,
@@ -49,6 +56,7 @@ export const REGISTRY: BoxBuilder[] = [
   tuckTuckBox,
   reverseTuck,
   autobottom0700,
+  pillowBox,
   // 礼盒 / 组合结构
   boxLid,
   drawerBox,

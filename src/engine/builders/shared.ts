@@ -69,7 +69,10 @@ export type EndSpec =
   // 插舌盖：主盖深 W + 插舌 tongue；mirror = 主盖换到 col4（反插盒，另一端插舌方向转 90°）
   | { type: 'tuck'; tongue: number; mirror?: boolean }
   | { type: 'fullBase' } // 全底板 + 锁舌 + 防尘翼（飞机盒底 / 天地盖）
-  | { type: 'lockBottom' }; // 自锁底（简化 crash-lock 几何）
+  | { type: 'lockBottom' } // 自锁底（简化 crash-lock 几何）
+  // 平压底（快递飞机盒底）：前后两大片对折互叠（col2 里片深 W/2、col4 外片深 W/2+4），
+  // col1/col3 浅防尘翼先折让位；成型后底面平整，侧缝胶带封底
+  | { type: 'flatCrush' };
 
 export interface TubeInput {
   /** 制造尺寸 */
@@ -96,6 +99,8 @@ export function endHeight(e: EndSpec, W: number): number {
       return W; // 全底板最深
     case 'lockBottom':
       return W / 2 + 5; // 底板深 + 锁舌凸出
+    case 'flatCrush':
+      return W / 2 + 4; // 外片（col4）越过中线叠压
   }
 }
 
@@ -209,6 +214,39 @@ function drawEnd(c: EntCollector, s: 1 | -1, spec: EndSpec, xs: number[], y0: nu
         seg(a, 0, a + ec, d);
         seg(a + ec, d, b - ec, d);
         seg(b - ec, d, b, 0);
+        seg(a, 0, b, 0, 'crease');
+      }
+      break;
+    }
+
+    case 'flatCrush': {
+      // 平压底：col2 里片（深 W/2）+ col4 外片（深 W/2+4，越过中线压住里片），
+      // 四角小切；col1/col3 浅防尘翼（先折让位，深 W/2-6）
+      const d2 = W / 2;
+      const d4 = W / 2 + 4;
+      const ds = Math.max(10, W / 2 - 6);
+      const cc = Math.min(4, W / 8);
+      // col2 / col4 两大片（梯形角切，轮廓同构）
+      for (const [a, b, d] of [
+        [xs[2], xs[3], d2],
+        [xs[4], xs[5], d4],
+      ] as [number, number, number][]) {
+        seg(a, 0, a, d - cc);
+        seg(a, d - cc, a + cc, d);
+        seg(a + cc, d, b - cc, d);
+        seg(b - cc, d, b, d - cc);
+        seg(b, d - cc, b, 0);
+        seg(a, 0, b, 0, 'crease');
+      }
+      // col1 / col3 浅防尘翼
+      const ec = Math.min(ds * 0.5, W / 4);
+      for (const [a, b] of [
+        [xs[1], xs[2]],
+        [xs[3], xs[4]],
+      ] as [number, number][]) {
+        seg(a, 0, a + ec, ds);
+        seg(a + ec, ds, b - ec, ds);
+        seg(b - ec, ds, b, 0);
         seg(a, 0, b, 0, 'crease');
       }
       break;
@@ -399,6 +437,58 @@ function endPanels(spec: EndSpec, s: 1 | -1, y0: number, xs: number[], W: number
         ],
         hinge: { kind: 'h', at: y0, sign: hs },
         finalDeg: 92.4,
+        children: [],
+      });
+      break;
+    }
+
+    case 'flatCrush': {
+      // 平压底：防尘翼先折(0.44 最里层 92.4) → col2 里片(0.58, 91.2) → col4 外片(0.74, 90 最外)
+      // 错层角递减避免端面共面 z-fighting；几何数值与 drawEnd 同源
+      const d2 = W / 2;
+      const d4 = W / 2 + 4;
+      const ds = Math.max(10, W / 2 - 6);
+      const cc = Math.min(4, W / 8);
+      for (const i of [1, 3]) {
+        const ec = Math.min(ds * 0.5, W / 4);
+        push(i, {
+          id: `fc-dust-${i}`,
+          poly: [
+            [xs[i], y0],
+            [xs[i] + ec, D(ds)],
+            [xs[i + 1] - ec, D(ds)],
+            [xs[i + 1], y0],
+          ],
+          hinge: { kind: 'h', at: y0, sign: hs },
+          phase: 0.44,
+          finalDeg: 92.4,
+          children: [],
+        });
+      }
+      push(2, {
+        id: 'fc-inner',
+        poly: [
+          [xs[2], y0],
+          [xs[2] + cc, D(d2)],
+          [xs[3] - cc, D(d2)],
+          [xs[3], y0],
+        ],
+        hinge: { kind: 'h', at: y0, sign: hs },
+        phase: 0.58,
+        finalDeg: 91.2,
+        children: [],
+      });
+      push(4, {
+        id: 'fc-outer',
+        poly: [
+          [xs[4], y0],
+          [xs[4] + cc, D(d4)],
+          [xs[5] - cc, D(d4)],
+          [xs[5], y0],
+        ],
+        hinge: { kind: 'h', at: y0, sign: hs },
+        phase: 0.74,
+        finalDeg: 90,
         children: [],
       });
       break;

@@ -7,6 +7,8 @@
   --text: #0f172a;
   --text2: #64748b;
   --red: #e11d48;
+  /* 下拉统一细线箭头（10×6 chevron，浅灰） */
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2394a3b8' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 * {
@@ -48,6 +50,9 @@ body {
   gap: 8px;
   font-size: 16px;
   white-space: nowrap;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 .brand .brand-logo {
   display: block;
@@ -66,12 +71,18 @@ body {
 .box-select {
   width: 100%;
   height: 34px;
-  padding: 0 8px;
+  padding: 0 34px 0 8px;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: #fff;
+  /* 细线箭头（替换原生粗箭头），右侧留 14px 距离 */
+  background-color: #fff;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right 14px center;
   font-size: 13px;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
 }
 /* 去掉选择后浏览器的默认焦点描边（Windows 下为系统强调色） */
 .box-select:focus {
@@ -196,9 +207,12 @@ body {
 }
 
 /* ============ 参数面板 ============ */
-.param-panel,
+/* 两面板相接处 padding 归零，间距由 param-group 的 margin-bottom(10px) 统一 */
+.param-panel {
+  padding: 12px 12px 0;
+}
 .info-panel {
-  padding: 12px;
+  padding: 0 12px 12px;
 }
 .param-head {
   display: flex;
@@ -218,7 +232,7 @@ body {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 10px 12px 12px;
+  padding: 10px 16px 12px;
   margin-bottom: 10px;
 }
 .param-group h4 {
@@ -270,13 +284,25 @@ body {
 }
 .field-select {
   flex: 1;
+  min-width: 0; /* 允许 flex 收缩（覆盖 select 固有内容宽），避免撑破容器 */
   height: 30px;
-  padding: 0 6px;
+  padding: 0 30px 0 6px;
   border: 1px solid var(--line);
   border-radius: 6px;
-  background: #fff;
+  /* 与盒型下拉统一：细线箭头，右侧留 12px 距离 */
+  background-color: #fff;
+  background-image: var(--select-arrow);
+  background-repeat: no-repeat;
+  background-position: right 12px center;
   font-size: 13px;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+/* 去掉选择后浏览器的默认焦点描边（与盒型下拉一致） */
+.field-select:focus {
+  outline: none;
+  border-color: var(--line);
 }
 
 /* 分段选择 */
@@ -291,6 +317,8 @@ body {
   flex: 1 1 auto; /* 以文字宽度为基础再均分剩余，避免 basis:0 平分导致四字标签换行 */
   white-space: nowrap;
   height: 28px;
+  padding: 0;
+  line-height: 28px; /* 与高度一致，文字垂直居中 */
   border: none;
   background: #fff;
   font-size: 12px;

@@ -10,6 +10,7 @@ import { fefco0201 } from '../engine/builders/fefco0201';
 import { fefco0200 } from '../engine/builders/fefco0200';
 import { shortFlapBox } from '../engine/builders/shortFlapBox';
 import { mailer0427 } from '../engine/builders/mailer0427';
+import { mailerFlat } from '../engine/builders/mailerFlat';
 import { tuckTuckBox } from '../engine/builders/tuckTuckBox';
 import { reverseTuck } from '../engine/builders/reverseTuck';
 import { autobottom0700 } from '../engine/builders/autobottom0700';
@@ -20,6 +21,8 @@ import { fruitBox } from '../engine/builders/fruitBox';
 import { cakeBox } from '../engine/builders/cakeBox';
 import { onePageBox } from '../engine/builders/onePageBox';
 import { bookBox } from '../engine/builders/bookBox';
+import { pillowBox } from '../engine/builders/pillowBox';
+import { rollTray0422, rollTray0421, trayEarlock427 } from '../engine/builders/rollTray';
 import { DEFAULT_PARAMS } from '../engine/params';
 import { DielineResult, PanelNode } from '../engine/types';
 import { buildPanelTreeObject, applyFold, groundModel, PanelModel } from '../render/render3d';
@@ -99,7 +102,9 @@ function verify(label: string, build: (p: typeof DEFAULT_PARAMS) => DielineResul
   model.rollers.forEach((_, i) => {
     const seq = sizeSeq[i];
     const fin = seq[seq.length - 1];
-    const tol = 5; // 摇盖/糊口错层过折余量
+    const tol = 15; // 摇盖/糊口错层过折余量；盖类三段折（墙→盖→舌）中途经历竖直态，
+    // z 投影暂缩（终态由盖尖越出 + 弹簧耳 z 分量后期贡献），属合法过程非换向；
+    // 真换向跨度差为量级级（数十 mm），此容差不漏检
     for (const s of seq) {
       if (s.x < fin.x - tol || s.z < fin.z - tol) {
         minBelow = true;
@@ -126,6 +131,7 @@ verify('0201', (pp) => fefco0201.build(pp), single);
 verify('0200 全叠盖箱', (pp) => fefco0200.build(pp), single);
 verify('短摇盖开口箱', (pp) => shortFlapBox.build(pp), single);
 verify('0427 飞机盒', (pp) => mailer0427.build(pp), single);
+verify('平压底飞机盒', (pp) => mailerFlat.build(pp), single);
 verify('双插舌盒', (pp) => tuckTuckBox.build(pp), single);
 verify('反插盒', (pp) => reverseTuck.build(pp), single);
 verify('自锁底盒', (pp) => autobottom0700.build(pp), single);
@@ -138,6 +144,12 @@ verify('0204 全底箱', (pp) => fruitBox.build(pp), single);
 verify('提手飞机盒', (pp) => cakeBox.build(pp), single);
 verify('一页成型箱', (pp) => onePageBox.build(pp), single);
 verify('书型翻盖盒', (pp) => bookBox.build(pp), single);
+// 枕形盒：L 沿 x、枕厚 W 竖直、枕高 H 沿 z（平躺）
+verify('枕形盒', (pp) => pillowBox.build(pp), single);
+// 卷边托盘：底板 2S 沿 x、墙高竖直、端部叠压沿 z（平躺）
+verify('0422 卷边托盘', (pp) => rollTray0422.build(pp), [['托盘', 462, 285, 226]]);
+verify('0421 卷边托盘', (pp) => rollTray0421.build(pp), [['托盘', 466, 295, 226]]);
+verify('427 耳锁盖托盘', (pp) => trayEarlock427.build(pp), [['托盘', 472, 288, 244]]);
 
 console.log(fail === 0 ? '\n全部通过' : `\n${fail} 项失败`);
 process.exit(fail === 0 ? 0 : 1);
