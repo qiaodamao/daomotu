@@ -9,8 +9,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg', 'logo.svg'],
       manifest: {
-        name: '刀模图生成器 Daomotu',
-        short_name: 'Daomotu',
+        name: '纸箱纸盒设计工具',
+        short_name: '纸箱纸盒设计',
         description: '参数化纸箱/纸盒刀模图在线生成：2D 展开图 + 3D 折叠预览，导出 SVG / DXF / PDF',
         lang: 'zh-CN',
         theme_color: '#2563eb',
