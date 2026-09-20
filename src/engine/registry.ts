@@ -24,6 +24,9 @@ import { fruitBox } from './builders/fruitBox';
 import { onePageBox } from './builders/onePageBox';
 import { bookBox } from './builders/bookBox';
 import { rollTray0422, rollTray0421, trayEarlock427 } from './builders/rollTray';
+import { bookWrap } from './builders/bookWrap';
+import { hexBox } from './builders/hexBox';
+import { handleBox } from './builders/handleBox';
 
 export interface BoxBuilder {
   id: string;
@@ -46,12 +49,14 @@ export const REGISTRY: BoxBuilder[] = [
   rollTray0422,
   rollTray0421,
   trayEarlock427,
+  handleBox,
   // 快递 / 电商
   mailer0427,
   mailerFlat,
   mailerDouble,
   cakeBox,
   onePageBox,
+  bookWrap,
   // 折叠纸盒（卡纸/彩盒）
   tuckTuckBox,
   reverseTuck,
@@ -61,6 +66,7 @@ export const REGISTRY: BoxBuilder[] = [
   boxLid,
   drawerBox,
   bookBox,
+  hexBox,
 ];
 
 export const DEFAULT_BOX_ID = 'fefco-0201';
