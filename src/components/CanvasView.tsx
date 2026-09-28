@@ -1,5 +1,5 @@
 /**
- * 画布视图：Canvas 2D 渲染 + 交互（滚轮缩放 / 拖拽平移 / 适应视图）
+ * 画布视图：Canvas 2D 渲染 + 交互（滚轮缩放 / 双指捏合 / 拖拽平移 / 适应视图）
  */
 import { useCallback, useEffect, useRef } from 'react';
 import { DielineResult } from '../engine/types';
@@ -14,6 +14,8 @@ export function CanvasView({ result, fitSignal }: { result: DielineResult; fitSi
   const viewRef = useRef<ViewState>({ scale: 1, ox: 0, oy: 0 });
   const rafRef = useRef(0);
   const dragRef = useRef<{ x: number; y: number } | null>(null);
+  const pointersRef = useRef(new Map<number, { x: number; y: number }>());
+  const pinchRef = useRef<{ dist: number; cx: number; cy: number } | null>(null);
   const showDim = useStore((s) => s.showDim);
   const showFaceDim = useStore((s) => s.showFaceDim);
   const printMode = useStore((s) => s.printMode);
@@ -72,20 +74,23 @@ export function CanvasView({ result, fitSignal }: { result: DielineResult; fitSi
     if (!cv) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
-      const v = viewRef.current;
-      const f = Math.exp(-e.deltaY * 0.0012);
-      const ns = clamp(v.scale * f, 0.02, 50);
       const rect = cv.getBoundingClientRect();
-      const sx = e.clientX - rect.left;
-      const sy = e.clientY - rect.top;
-      v.ox = sx - ((sx - v.ox) / v.scale) * ns;
-      v.oy = sy - ((sy - v.oy) / v.scale) * ns;
-      v.scale = ns;
-      scheduleRedraw();
+      zoomAt(e.clientX - rect.left, e.clientY - rect.top, Math.exp(-e.deltaY * 0.0012));
     };
     cv.addEventListener('wheel', onWheel, { passive: false });
     return () => cv.removeEventListener('wheel', onWheel);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scheduleRedraw]);
+
+  // 以视口坐标点为锚缩放视图，并累加平移
+  const zoomAt = (sx: number, sy: number, factor: number, panX = 0, panY = 0) => {
+    const v = viewRef.current;
+    const ns = clamp(v.scale * factor, 0.02, 50);
+    v.ox = sx - ((sx - v.ox) / v.scale) * ns + panX;
+    v.oy = sy - ((sy - v.oy) / v.scale) * ns + panY;
+    v.scale = ns;
+    scheduleRedraw();
+  };
 
   return (
     <div ref={wrapRef} className="canvas-wrap">
@@ -94,9 +99,32 @@ export function CanvasView({ result, fitSignal }: { result: DielineResult; fitSi
         className="canvas"
         onPointerDown={(e) => {
           (e.target as HTMLElement).setPointerCapture(e.pointerId);
-          dragRef.current = { x: e.clientX, y: e.clientY };
+          pointersRef.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (pointersRef.current.size === 2) {
+            const [p1, p2] = [...pointersRef.current.values()];
+            pinchRef.current = { dist: Math.hypot(p2.x - p1.x, p2.y - p1.y), cx: (p1.x + p2.x) / 2, cy: (p1.y + p2.y) / 2 };
+            dragRef.current = null;
+          } else {
+            dragRef.current = { x: e.clientX, y: e.clientY };
+          }
         }}
         onPointerMove={(e) => {
+          const pts = pointersRef.current;
+          if (!pts.has(e.pointerId)) return;
+          pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+          if (pts.size >= 2 && pinchRef.current) {
+            const [p1, p2] = [...pts.values()];
+            const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+            const cx = (p1.x + p2.x) / 2;
+            const cy = (p1.y + p2.y) / 2;
+            const base = pinchRef.current;
+            if (base.dist > 0) {
+              const rect = canvasRef.current!.getBoundingClientRect();
+              zoomAt(cx - rect.left, cy - rect.top, dist / base.dist, cx - base.cx, cy - base.cy);
+            }
+            pinchRef.current = { dist, cx, cy };
+            return;
+          }
           const d = dragRef.current;
           if (!d) return;
           viewRef.current.ox += e.clientX - d.x;
@@ -104,10 +132,25 @@ export function CanvasView({ result, fitSignal }: { result: DielineResult; fitSi
           dragRef.current = { x: e.clientX, y: e.clientY };
           scheduleRedraw();
         }}
-        onPointerUp={() => (dragRef.current = null)}
-        onPointerCancel={() => (dragRef.current = null)}
+        onPointerUp={(e) => {
+          pointersRef.current.delete(e.pointerId);
+          pinchRef.current = null;
+          // 双指剩单指时以剩余手指为拖拽起点，避免视图跳变
+          if (pointersRef.current.size === 1) {
+            const [p] = [...pointersRef.current.values()];
+            dragRef.current = { x: p.x, y: p.y };
+          } else {
+            dragRef.current = null;
+          }
+        }}
+        onPointerCancel={(e) => {
+          pointersRef.current.delete(e.pointerId);
+          pinchRef.current = null;
+          const rest = [...pointersRef.current.values()];
+          dragRef.current = rest.length === 1 ? { x: rest[0].x, y: rest[0].y } : null;
+        }}
       />
-      <div className="canvas-hint">滚轮缩放 · 拖拽平移</div>
+      <div className="canvas-hint">滚轮/双指缩放 · 拖拽平移</div>
     </div>
   );
 }

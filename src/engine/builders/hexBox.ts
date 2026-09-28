@@ -89,10 +89,11 @@ export const hexBox = {
 
     // ---- 2D 实体 ----
     const c = new EntCollector();
-    // 底板六角轮廓（cut，除挂边下平边外 5 边）
-    c.polyline('cut', hexBase.slice(1), false); // (−a/2,L/2) 起 → 顶点 → 回 (a/2,L/2)
-    // 顶盖六角轮廓（cut，除挂边外 5 边）
-    c.polyline('cut', hexCover.slice(1), false);
+    // 底板六角轮廓（cut，除挂边下平边外 5 边）：(−a/2,L/2) 起 → 顶点 → 回 (a/2,L/2)
+    c.polyline('cut', [...hexBase.slice(1), hexBase[0]], false);
+    // 顶盖挂 p3 顶边，其挂边是上平边 [3]-[4]（y=yT，已由 crease 单独画）；
+    //   自由外缘 [0]-[1] 须作为 cut，故轮廓从 [4] 绕到 [3]、排除 [3]-[4]
+    c.polyline('cut', [hexCover[4], hexCover[5], hexCover[0], hexCover[1], hexCover[2], hexCover[3]], false);
     // 链外框（cut）：上/下长缘（p3 段为 crease 分开画）+ 左右端
     c.line('cut', -2.5 * a, yB, -0.5 * a, yB); // 下缘左段（p1+p2）
     c.line('cut', 0.5 * a, yB, 2.5 * a, yB); // 下缘右段（p4-p6）

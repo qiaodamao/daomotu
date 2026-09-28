@@ -297,6 +297,8 @@
 }
 .box-thumb {
   display: block;
+  width: 100%;
+  max-width: 280px;
 }
 .box-name {
   font-size: 13px;
@@ -498,5 +500,21 @@
   }
   .hero-ctas .pill {
     flex: 1 1 100%;
+  }
+  .box-card {
+    padding: 12px 8px 10px;
+    gap: 8px;
+  }
+  .box-name {
+    font-size: 12px;
+  }
+  .box-grid {
+    gap: 10px;
+  }
+  .box-cat-title {
+    font-size: 13px;
+  }
+  .box-cat {
+    margin-bottom: 40px;
   }
 }
