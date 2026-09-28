@@ -72,7 +72,7 @@ export async function toPDF(result: DielineResult, dims?: DimOptions): Promise<U
 
   const styleOf = (layer: string) => {
     if (layer === 'cut') return { color: rgb(0.88, 0.11, 0.28), thickness: 0.3, dash: undefined as number[] | undefined };
-    if (layer === 'crease') return { color: rgb(0.15, 0.39, 0.92), thickness: 0.25, dash: [2, 1.2] };
+    if (layer === 'crease') return { color: rgb(0, 0.44, 0.95), thickness: 0.25, dash: [2, 1.2] };
     return { color: rgb(0.4, 0.4, 0.4), thickness: 0.25, dash: [1, 1] };
   };
 

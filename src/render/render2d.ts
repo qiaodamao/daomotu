@@ -16,10 +16,10 @@ export interface ViewState {
 }
 
 const COLORS: Record<Layer, string> = {
-  cut: '#e11d48',
-  crease: '#2563eb',
-  perf: '#64748b',
-  dim: '#94a3b8',
+  cut: '#ee0000',
+  crease: '#0070f3',
+  perf: '#8f8f8f',
+  dim: '#a1a1a1',
 };
 
 /** 计算适应视图（留 40px 边距） */

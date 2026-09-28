@@ -13,7 +13,7 @@ export default defineConfig({
         short_name: '纸箱纸盒设计',
         description: '参数化纸箱/纸盒刀模图在线生成：2D 展开图 + 3D 折叠预览，导出 SVG / DXF / PDF',
         lang: 'zh-CN',
-        theme_color: '#2563eb',
+        theme_color: '#171717',
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',

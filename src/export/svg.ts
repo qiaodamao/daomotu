@@ -8,7 +8,7 @@ import { computeDimMarks, DimMark, DimOptions } from '../engine/dims';
 
 const LAYER_STYLE: Record<Layer, { color: string; dash?: string }> = {
   cut: { color: '#e11d48' },
-  crease: { color: '#2563eb', dash: '6,3' },
+  crease: { color: '#0070f3', dash: '6,3' },
   perf: { color: '#64748b', dash: '2,2' },
   dim: { color: '#94a3b8' },
 };
