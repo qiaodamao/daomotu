@@ -4,6 +4,7 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CanvasView } from '../components/CanvasView';
+import { ChunkGuard } from '../components/ChunkGuard';
 const Three3DView = lazy(() => import('../components/Three3DView').then((m) => ({ default: m.Three3DView })));
 import { IcoChevron, IcoFace, IcoFit, IcoLink, IcoOverall, IcoPrint, IcoReset } from '../components/icons';
 import { InfoPanel } from '../components/InfoPanel';
@@ -242,9 +243,11 @@ export default function Editor() {
         {view === '2d' ? (
           <CanvasView result={result} fitSignal={fitSignal} />
         ) : (
-          <Suspense fallback={<div className="three-loading">加载 3D 模块…</div>}>
-            <Three3DView result={result} />
-          </Suspense>
+          <ChunkGuard>
+            <Suspense fallback={<div className="three-loading">加载 3D 模块</div>}>
+              <Three3DView result={result} />
+            </Suspense>
+          </ChunkGuard>
         )}
       </div>
 

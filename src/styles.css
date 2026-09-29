@@ -596,6 +596,18 @@ button:active {
   color: var(--mute);
   font-size: 13px;
 }
+/* 3D 分包加载失败的兜底（旧缓存指向已不存在的 chunk） */
+.chunk-fail {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--body);
+  font-size: 14px;
+}
 .view3d-ctrls {
   position: absolute;
   left: 12px;
