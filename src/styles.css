@@ -192,6 +192,10 @@ button:active {
 
 /* ============ 按钮（应用 chrome = 6px 方角） ============ */
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   height: 32px;
   padding: 0 12px;
   border: 1px solid var(--hairline);
@@ -203,6 +207,14 @@ button:active {
   cursor: pointer;
   white-space: nowrap;
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+/* 工具按钮图标：桌面端只显文字，移动端反过来（靠各自 display 切换） */
+.btn-ico {
+  display: none;
+  flex: none;
+}
+.btn-chev {
+  flex: none;
 }
 .btn:hover {
   background: var(--hairline-soft);
@@ -631,8 +643,8 @@ button:active {
   .topbar {
     flex-wrap: wrap;
     height: auto;
-    padding: 8px 12px;
-    row-gap: 8px;
+    padding: 6px 12px;
+    row-gap: 6px;
   }
   .brand b {
     display: none; /* 只留 logo，省出横向空间 */
@@ -646,18 +658,53 @@ button:active {
   .tools {
     order: 5; /* 换到第二行 */
     flex-basis: 100%;
+    gap: 2px;
+    padding: 2px;
+    justify-content: space-between;
+    /* 浅灰底把六个图标收成一条工具栏，避免一眼全是独立按钮 */
+    background: var(--hairline-soft);
+    border-radius: 10px;
     overflow-x: auto;
-    padding-bottom: 2px;
     scrollbar-width: none;
   }
   .tools::-webkit-scrollbar {
     display: none;
   }
-  .btn {
-    height: 34px; /* 触控目标加大 */
+  /* 移动端工具按钮：只留图标，去边框 ghost 态，同尺寸方框；开关态仍靠黑底区分 */
+  .tools .btn {
+    width: 44px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--body);
   }
+  .tools .btn:hover {
+    background: var(--elevated);
+    border-color: transparent;
+  }
+  .tools .btn.active {
+    background: var(--ink);
+    border-color: transparent;
+    color: #fff;
+  }
+  .tools .btn-ico {
+    width: 18px;
+    height: 18px;
+  }
+  .btn-ico {
+    display: block;
+  }
+  .btn-lbl {
+    display: none;
+  }
+  .btn {
+    height: 38px; /* 触控目标加大（下载主按钮） */
+  }
+  /* tab 组含 1px 边框：36 + 2 = 38，与下载按钮等高 */
   .tab {
-    height: 32px;
+    height: 36px;
   }
   .main {
     flex-direction: column;

@@ -5,6 +5,7 @@ import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CanvasView } from '../components/CanvasView';
 const Three3DView = lazy(() => import('../components/Three3DView').then((m) => ({ default: m.Three3DView })));
+import { IcoChevron, IcoFace, IcoFit, IcoLink, IcoOverall, IcoPrint, IcoReset } from '../components/icons';
 import { InfoPanel } from '../components/InfoPanel';
 import { ParamPanel } from '../components/ParamPanel';
 import { getBuilder, REGISTRY } from '../engine/registry';
@@ -135,29 +136,60 @@ export default function Editor() {
         <div className="spacer" />
 
         <div className="tools">
-          <button type="button" className={`btn ${showDim ? 'active' : ''}`} onClick={toggleDim} title="显示/隐藏整体幅面尺寸（总宽/总高）">
-            整体尺寸
+          <button
+            type="button"
+            className={`btn ${showDim ? 'active' : ''}`}
+            onClick={toggleDim}
+            aria-label="整体尺寸"
+            title="显示/隐藏整体幅面尺寸（总宽/总高）"
+          >
+            <IcoOverall className="btn-ico" />
+            <span className="btn-lbl">整体尺寸</span>
           </button>
-          <button type="button" className={`btn ${showFaceDim ? 'active' : ''}`} onClick={toggleFaceDim} title="显示/隐藏各面尺寸（相同尺寸的面只标一处）">
-            各面尺寸
+          <button
+            type="button"
+            className={`btn ${showFaceDim ? 'active' : ''}`}
+            onClick={toggleFaceDim}
+            aria-label="各面尺寸"
+            title="显示/隐藏各面尺寸（相同尺寸的面只标一处）"
+          >
+            <IcoFace className="btn-ico" />
+            <span className="btn-lbl">各面尺寸</span>
           </button>
-          <button type="button" className={`btn ${printMode ? 'active' : ''}`} onClick={togglePrint} title="全黑线型（打印友好）">
-            打印模式
+          <button
+            type="button"
+            className={`btn ${printMode ? 'active' : ''}`}
+            onClick={togglePrint}
+            aria-label="打印模式"
+            title="全黑线型（打印友好）"
+          >
+            <IcoPrint className="btn-ico" />
+            <span className="btn-lbl">打印模式</span>
           </button>
-          <button type="button" className="btn" onClick={() => setFitSignal((s) => s + 1)} title="适应视图">
-            ⤢ 适应视图
+          <button
+            type="button"
+            className="btn"
+            onClick={() => setFitSignal((s) => s + 1)}
+            aria-label="适应视图"
+            title="适应视图"
+          >
+            <IcoFit className="btn-ico" />
+            <span className="btn-lbl">适应视图</span>
           </button>
-          <button type="button" className="btn" onClick={copyLink} title="复制分享链接">
-            复制链接
+          <button type="button" className="btn" onClick={copyLink} aria-label="复制链接" title="复制分享链接">
+            <IcoLink className="btn-ico" />
+            <span className="btn-lbl">复制链接</span>
           </button>
-          <button type="button" className="btn" onClick={resetParams} title="恢复本盒型推荐尺寸">
-            ⟲ 复位
+          <button type="button" className="btn" onClick={resetParams} aria-label="复位" title="恢复本盒型推荐尺寸">
+            <IcoReset className="btn-ico" />
+            <span className="btn-lbl">复位</span>
           </button>
         </div>
 
         <div className="export-drop" ref={exportRef}>
           <button type="button" className="btn primary" disabled={busy} onClick={() => setExportOpen((o) => !o)} title="下载刀模图">
-            {busy ? '下载中…' : '下载'} ▾
+            {busy ? '下载中' : '下载'}
+            <IcoChevron className="btn-chev" />
           </button>
           {exportOpen && (
             <div className="export-menu" role="menu">

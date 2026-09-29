@@ -32,7 +32,7 @@ computing gzip size...
 - Using dynamic import() to code-split the application
 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
-[32m✓ built in 3.21s[39m
+[32m✓ built in 2.48s[39m
 
 PWA v1.3.0
 mode      generateSW
@@ -40,4 +40,3 @@ precache  188 entries (57763.06 KiB)
 files generated
   dist/sw.js
   dist/workbox-ebea30cf.js
-build=0

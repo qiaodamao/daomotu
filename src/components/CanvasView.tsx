@@ -42,14 +42,18 @@ export function CanvasView({ result, fitSignal }: { result: DielineResult; fitSi
     const wrap = wrapRef.current;
     const cv = canvasRef.current;
     if (!wrap || !cv) return;
-    const ro = new ResizeObserver(() => {
+    // RO 的首次回调要等一次渲染时机：从 3D 视图切回来时可能不来，
+    // 那时 canvas 会停在默认 300×150（CSS 不拉伸）→ 刀版图空白，故先同步量一次
+    const resize = () => {
       const dpr = window.devicePixelRatio || 1;
       cv.width = Math.max(1, Math.round(wrap.clientWidth * dpr));
       cv.height = Math.max(1, Math.round(wrap.clientHeight * dpr));
       cv.style.width = `${wrap.clientWidth}px`;
       cv.style.height = `${wrap.clientHeight}px`;
       scheduleRedraw();
-    });
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
     ro.observe(wrap);
     return () => ro.disconnect();
   }, [scheduleRedraw]);
