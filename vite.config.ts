@@ -7,7 +7,10 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg', 'logo.svg'],
+      // 改成 .json：EdgeOne 对 .webmanifest 只会给 application/octet-stream，
+      // 而 .json 实测能拿到 application/json（安卓读清单更稳）。
+      manifestFilename: 'manifest.json',
+      includeAssets: ['icon.svg', 'logo.svg', 'favicon.ico'],
       manifest: {
         name: '纸箱纸盒设计工具',
         short_name: '纸箱纸盒设计',
@@ -18,16 +21,17 @@ export default defineConfig({
         display: 'standalone',
         start_url: '/',
         icons: [
-          {
-            src: '/logo.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
-            purpose: 'any',
-          },
+          // 安卓"添加到桌面"要的是真实位图：192 给启动器，512 给自适应图标
+          { src: '/icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: '/icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          // 实色底 + 图形缩进安全区，防止被圆形/方圆形蒙版切掉边角
+          { src: '/icons/maskable-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
+          { src: '/icons/maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: '/logo.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,woff2,png,ico}'],
         // 导出下载不缓存；运行时按需
         runtimeCaching: [
           {
