@@ -17,7 +17,7 @@ const fields: FieldSpec[] = [
 
 export const drawerBox = {
   id: 'drawer-box',
-  name: '抽屉盒（内托 + 套筒）',
+  name: '滑盖盒（抽屉式·内托＋套筒）',
   category: '礼盒 / 折叠纸盒',
   fields,
   build(p: BoxParams): DielineResult {

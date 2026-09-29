@@ -1,6 +1,7 @@
 /**
  * 首页落地页：Apple 风格 tile 体系（黑导航 / Hero / 功能 / 盒型展品 / 流程 / FAQ / 页脚）
  */
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BoxThumb } from '../components/BoxThumb';
 import { REGISTRY } from '../engine/registry';
@@ -80,6 +81,19 @@ const CAT_ALIAS: Record<string, string> = {
 };
 
 export default function Landing() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [showTop, setShowTop] = useState(false);
+
+  // .landing 本身是滚动容器（overflow-y:auto），监听须挂它而非 window
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => setShowTop(el.scrollTop > 600);
+    el.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => el.removeEventListener('scroll', onScroll);
+  }, []);
+
   const cats = REGISTRY.reduce<Record<string, typeof REGISTRY>>((acc, b) => {
     const cat = CAT_ALIAS[b.category] ?? b.category;
     (acc[cat] ??= []).push(b);
@@ -87,7 +101,7 @@ export default function Landing() {
   }, {});
 
   return (
-    <div className="landing">
+    <div className="landing" ref={scrollRef}>
       {/* 全局导航（纯黑） */}
       <nav className="gnav">
         <div className="gnav-inner">
@@ -236,6 +250,21 @@ export default function Landing() {
           <p className="footer-legal">© 2026 视觉符号 · 刀模图生成器</p>
         </div>
       </footer>
+
+      {/* 返回顶部 */}
+      <button
+        type="button"
+        className={`to-top${showTop ? ' show' : ''}`}
+        title="返回顶部"
+        aria-label="返回顶部"
+        aria-hidden={!showTop}
+        tabIndex={showTop ? 0 : -1}
+        onClick={() => scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+      </button>
     </div>
   );
 }

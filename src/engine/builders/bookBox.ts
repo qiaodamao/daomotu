@@ -21,7 +21,7 @@ const fields: FieldSpec[] = [
 
 export const bookBox = {
   id: 'book-box',
-  name: '书型翻盖盒（连体脊）',
+  name: '书型盒（翻盖·连体脊）',
   category: '礼盒 / 组合结构',
   fields,
   build(p: BoxParams): DielineResult {

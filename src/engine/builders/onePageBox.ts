@@ -1,5 +1,5 @@
 /**
- * 一页成型箱（0447 变体，无糊口）
+ * 一页成型箱（免胶、无糊口，结构近 FEFCO 0447）
  * 一张纸板折成完整纸箱，无糊口、无钉：
  *   布局（2D）：中央底板 L×W；上/下各接前/后壁（高 H）；左右各接侧壁（宽 W）；
  *   前后壁两端各连一片端盖（深 W），折合后包贴侧壁外壁，锁合成型。
@@ -14,7 +14,7 @@ const fields: FieldSpec[] = [...COMMON_FIELDS];
 
 export const onePageBox = {
   id: 'one-page-box',
-  name: '一页成型箱（无糊口 0447）',
+  name: '一页箱（免胶·无糊口）',
   category: '快递 / 电商',
   fields,
   build(p: BoxParams): DielineResult {

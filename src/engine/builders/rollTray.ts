@@ -1,13 +1,20 @@
 /**
- * 卷边托盘（Roll-End Tray）系列：FEFCO 0422 / 0421 / 427
+ * 卷边托盘（Roll-End Tray）系列：0422 / 0421（铰接盖）/ 耳锁盖
+ *
+ * 尺寸基准：内尺寸 L×B×H（与 PLM 行业公式一致，由制造尺寸还原）
+ *   端墙铰线 S = L/2+(2t+8)，角舌铰线 T = S−2t，墙铰线 root = W/2+4，
+ *   端板半幅 halfW = W/2+2t，墙高 H+4，外墙 H4 = H+2，内墙 H3 = H−2，
+ *   角舌斜边端 D1 = root+3，锁孔 15×33、中心半幅 halfW−56.5
+ *   （0421 变体在 400×300×100 · t=3 下逐线复刻参考刀版 117/117，max 偏差 0.000mm）
  *
  * 结构（yE = 引擎 y-down，原点=底板中心；成型 L×W×H 平躺，x=L、y=W 竖直、z=H）：
  *   底板八边形（四角斜切）+ 前后墙（h 折立起）+ 角舌（挂墙 v 折 88° 折入端部）
  *   + H4 外侧墙（v 折立起）→ 水平条（v 折 90° 盖沿）→ H3 内侧墙（v 折立起，
  *   双锁舌插底板锁孔）——端部多层瓦楞叠压自锁（角舌先折 phase 0.12、H3 后立
  *   phase 0.50 压住角舌，88° 错层使角舌微斜插入 H3/H4 之间夹层）
- * 盖部：0422 无盖；0421 铰接插舌盖（front 六边形含颈 + 盖 + 插舌）；
- *   427 耳锁盖（盖 + 双耳 + 大舌 + 双弹簧耳，弹簧耳 finalDeg=5° 微翘锁紧）
+ * 盖部：0422 无盖；0421 铰接插舌盖（front 六边形含颈 + 盖体 R9 卷边角 +
+ *   前沿帘口切边带 + 插舌 R20 圆角）；耳锁盖（盖 + 双耳 + 大舌 + 双弹簧耳，
+ *   弹簧耳 finalDeg=5° 微翘锁紧）
  *
  * 折叠波次（全显式 phase）：墙 0.02 → 角舌 0.12 → H4 0.24 → 条 0.38
  *   → H3 0.50 → 盖 0.62 → 舌/耳 0.74
@@ -59,11 +66,20 @@ const SPEC_427: TraySpec = {
 const mirX = (pts: [number, number][]) => pts.map(([x, y]) => [-x, y] as [number, number]);
 const mirY = (pts: [number, number][]) => pts.map(([x, y]) => [x, -y] as [number, number]);
 
+/** 圆弧采样成折线点（3D 面板轮廓用；角度制，a0→a1 线性插值） */
+const arcPts = (cx: number, cy: number, r: number, a0: number, a1: number, n = 8): [number, number][] =>
+  Array.from({ length: n + 1 }, (_, i) => {
+    const a = ((a0 + ((a1 - a0) * i) / n) * Math.PI) / 180;
+    return [cx + r * Math.cos(a), cy + r * Math.sin(a)] as [number, number];
+  });
+
 export function buildRollTray(p: BoxParams, spec: TraySpec): DielineResult {
   const make = toMakeSize(p);
-  const L = make.l;
-  const W = make.w;
-  const H = make.h;
+  // 尺寸体系：PLM 行业公式按内尺寸 L/B/H 推导（样版 400×300×100 → L1=428、root=154 全部吻合），
+  // 故这里由制造尺寸还原内尺寸，再叠加各偏移量
+  const L = make.l - p.t;
+  const W = make.w - p.t;
+  const H = Math.max(make.h - 2 * p.t, 10);
   const { t } = p;
   // ---- 派生尺寸 ----
   const S = L / 2 + spec.off1(t); // H4 外墙铰线 x
@@ -183,18 +199,27 @@ export function buildRollTray(p: BoxParams, spec: TraySpec): DielineResult {
   // ---- 盖部 ----
   const c = new EntCollector();
   if (spec.lid === 'tuck') {
-    // 0421：盖六边形 + 插舌六点梯形
+    // 0421：盖（R9 卷边圆角）+ 插舌（R20 圆角）
     const Tw = G - 18;
     front.children.push({
       id: 'cover',
-      poly: [[-G, y0], [G, y0], [G, yt + 9], [G - 9, yt], [-(G - 9), yt], [-G, yt + 9]],
+      poly: [
+        [-G, y0], [G, y0], [G, yt + 9],
+        ...arcPts(G - 9, yt + 9, 9, 0, -90).slice(1, -1),
+        [G - 9, yt], [-(G - 9), yt],
+        ...arcPts(-(G - 9), yt + 9, 9, -90, -180).slice(1, -1),
+        [-G, yt + 9],
+      ],
       hinge: { kind: 'h', at: y0, sign: 1 }, finalDeg: 90, phase: 0.62,
       children: [
         {
           id: 'tuck',
           poly: [
-            [-Tw, yt], [Tw, yt], [Tw, yt - 10], [Tw - 20, yt - 30],
-            [-(Tw - 20), yt - 30], [-Tw, yt - 10],
+            [-Tw, yt], [Tw, yt], [Tw, yt - 10],
+            ...arcPts(Tw - 20, yt - 10, 20, 0, -90).slice(1, -1),
+            [Tw - 20, yt - 30], [-(Tw - 20), yt - 30],
+            ...arcPts(-(Tw - 20), yt - 10, 20, -90, -180).slice(1, -1),
+            [-Tw, yt - 10],
           ],
           hinge: { kind: 'h', at: yt, sign: 1 }, finalDeg: 92, phase: 0.74, children: [],
         },
@@ -332,20 +357,21 @@ export function buildRollTray(p: BoxParams, spec: TraySpec): DielineResult {
   c.polyline('cut', mirX(h3R));
 
   if (spec.lid === 'tuck') {
-    // ---- 0421 盖部：盖 + 插舌 ----
+    // ---- 0421 盖部：盖（R9 卷边角）+ 帘口切边带 + 插舌（R20 圆角）----
     const Tw = G - 18;
     c.line('cut', G, y0, G, yt + 9); // 盖右竖边
-    c.line('cut', G, yt + 9, G - 9, yt); // 右上斜角
-    c.line('cut', G - 9, yt, -(G - 9), yt); // 盖顶边
-    c.line('cut', -(G - 9), yt, -G, yt + 9); // 左上斜角
+    arcCut(G - 9, yt + 9, 9, 270, 360); // 右上 R9
+    c.line('cut', G - 9, yt, Tw, yt); // 盖前沿右切边带（帘口宽以外）
+    c.line('cut', -Tw, yt, -(G - 9), yt); // 盖前沿左切边带
+    arcCut(-(G - 9), yt + 9, 9, 180, 270); // 左上 R9
     c.line('cut', -G, yt + 9, -G, y0); // 盖左竖边
     c.line('crease', -G, y0, G, y0); // 盖铰线（= 颈顶）
     c.line('cut', Tw, yt, Tw, yt - 10); // 舌右竖边
-    c.line('cut', Tw, yt - 10, Tw - 20, yt - 30); // 右斜边
+    arcCut(Tw - 20, yt - 10, 20, 270, 360); // 右 R20
     c.line('cut', Tw - 20, yt - 30, -(Tw - 20), yt - 30); // 舌底边
-    c.line('cut', -(Tw - 20), yt - 30, -Tw, yt - 10); // 左斜边
+    arcCut(-(Tw - 20), yt - 10, 20, 180, 270); // 左 R20
     c.line('cut', -Tw, yt - 10, -Tw, yt); // 舌左竖边
-    c.line('crease', -Tw, yt, Tw, yt); // 舌铰线
+    c.line('crease', -Tw, yt, Tw, yt); // 舌铰线（= 帘口折线）
   } else if (spec.lid === 'earlock') {
     // ---- 427 盖部：盖 + 双耳 + 大舌 + 双弹簧耳 ----
     const TE = T + 4;
@@ -403,7 +429,7 @@ export function buildRollTray(p: BoxParams, spec: TraySpec): DielineResult {
     entities: c.entities,
     panels: [base],
     meta: {
-      makeSize: { l: L, w: W, h: H },
+      makeSize: make,
       unfold: { w: bb.max.x - bb.min.x, h: bb.max.y - bb.min.y },
       areaM2: ((bb.max.x - bb.min.x) * (bb.max.y - bb.min.y)) / 1e6,
       warnings,
@@ -415,7 +441,7 @@ const fields = COMMON_FIELDS.filter((f) => f.key !== 'glueFlap' && f.key !== 'ch
 
 export const rollTray0422 = {
   id: 'roll-tray-0422',
-  name: '0422 卷边托盘（双壁免胶）',
+  name: '卷边托盘（双壁免胶）',
   category: '瓦楞纸箱',
   fields,
   build: (p: BoxParams) => buildRollTray(p, SPEC_0422),
@@ -423,7 +449,7 @@ export const rollTray0422 = {
 
 export const rollTray0421 = {
   id: 'roll-tray-0421',
-  name: '0421 卷边托盘（铰接盖）',
+  name: '卷边托盘（铰接盖）',
   category: '瓦楞纸箱',
   fields,
   build: (p: BoxParams) => buildRollTray(p, SPEC_0421),
@@ -431,7 +457,7 @@ export const rollTray0421 = {
 
 export const trayEarlock427 = {
   id: 'tray-earlock-427',
-  name: '427 耳锁盖托盘',
+  name: '耳朵锁托盘（插舌自锁）',
   category: '瓦楞纸箱',
   fields,
   build: (p: BoxParams) => buildRollTray(p, SPEC_427),

@@ -1,6 +1,7 @@
 /**
- * 0427 飞机盒（电商快递盒 mailer）
+ * 管式飞机盒（电商快递盒 mailer，业内编号 0427）
  * 顶部：插舌盖（主盖 + 耳片）；底部：全底板 + 锁舌 + 防尘翼（平压底）。
+ * 名称口径：显示名用行业俗称，标准编号不进显示名；id `mailer-0427` 永不改。
  */
 import { BoxParams, commonWarnings, toMakeSize, COMMON_FIELDS, FieldSpec } from '../params';
 import { bbox, DielineResult } from '../types';
@@ -13,7 +14,7 @@ const fields: FieldSpec[] = [
 
 export const mailer0427 = {
   id: 'mailer-0427',
-  name: '飞机盒（0427 变体）',
+  name: '管式飞机盒（插舌盖）',
   category: '快递 / 电商',
   fields,
   build(p: BoxParams): DielineResult {

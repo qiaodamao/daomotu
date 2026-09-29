@@ -56,7 +56,7 @@ function addHandleHole(trees: PanelNode[], cx: number, cy: number, w: number, h:
 
 export const cakeBox = {
   id: 'cake-box',
-  name: '提手飞机盒（手提孔）',
+  name: '提手飞机盒（蛋糕·外卖）',
   category: '快递 / 电商',
   fields,
   build(p: BoxParams): DielineResult {

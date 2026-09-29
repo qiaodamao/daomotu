@@ -15,7 +15,7 @@ const fields: FieldSpec[] = [
 
 export const fefco0203 = {
   id: 'fefco-0203',
-  name: '0203 全叠盖箱',
+  name: '0203 大盖箱（全叠盖）',
   category: '瓦楞纸箱',
   fields,
   build(p: BoxParams): DielineResult {

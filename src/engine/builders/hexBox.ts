@@ -31,7 +31,7 @@ function hexPts(cx: number, cy: number, a: number): [number, number][] {
 
 export const hexBox = {
   id: 'hex-box',
-  name: '六角柱礼盒（六边形筒）',
+  name: '六角筒礼盒',
   category: '礼盒 / 组合结构',
   fields,
   build(p: BoxParams): DielineResult {
@@ -96,9 +96,9 @@ export const hexBox = {
     c.polyline('cut', [hexCover[4], hexCover[5], hexCover[0], hexCover[1], hexCover[2], hexCover[3]], false);
     // 链外框（cut）：上/下长缘（p3 段为 crease 分开画）+ 左右端
     c.line('cut', -2.5 * a, yB, -0.5 * a, yB); // 下缘左段（p1+p2）
-    c.line('cut', 0.5 * a, yB, 2.5 * a, yB); // 下缘右段（p4-p6）
+    c.line('cut', 0.5 * a, yB, 3.5 * a, yB); // 下缘右段（p4+p5+p6）
     c.line('cut', -2.5 * a, yT, -0.5 * a, yT); // 上缘左段
-    c.line('cut', 0.5 * a, yT, 2.5 * a, yT); // 上缘右段
+    c.line('cut', 0.5 * a, yT, 3.5 * a, yT); // 上缘右段（p4+p5+p6）
     c.line('cut', -2.5 * a, yB, -2.5 * a, yT); // p1 左缘
     // p6 右缘（cut，被糊口斜切分段）：上/下各 10 直段
     c.line('cut', 3.5 * a, yB, 3.5 * a, yB + 10);

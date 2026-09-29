@@ -1,6 +1,6 @@
 /**
- * FEFCO 0200 全叠盖开槽箱
- * 与 0201 的区别：摇盖间无开槽缝（slot=0），内外摇盖满宽对折。
+ * FEFCO 0200 对口箱（摇盖共边）
+ * 与 0201 的区别：摇盖间不开槽（slot=0），四片摇盖边与边相接。
  */
 import { BoxParams, commonWarnings, toMakeSize, COMMON_FIELDS, FieldSpec } from '../params';
 import { bbox, DielineResult } from '../types';
@@ -13,7 +13,7 @@ const fields: FieldSpec[] = [
 
 export const fefco0200 = {
   id: 'fefco-0200',
-  name: '0200 全叠盖箱',
+  name: '0200 对口箱（摇盖共边无槽）',
   category: '瓦楞纸箱',
   fields,
   build(p: BoxParams): DielineResult {

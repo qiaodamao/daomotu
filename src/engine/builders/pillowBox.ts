@@ -45,7 +45,7 @@ function wingPoly(edgeX: number, y0: number, y1: number, depth: number, dir: 1 |
 
 export const pillowBox = {
   id: 'pillow-box',
-  name: '枕形盒（Pillow）',
+  name: '枕头盒（弧形模切）',
   category: '折叠纸盒（卡纸/彩盒）',
   fields,
   build(p: BoxParams): DielineResult {

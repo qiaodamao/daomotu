@@ -1,5 +1,5 @@
 /**
- * 0204 摇盖全底箱（上摇盖 + 全底板）
+ * 摇盖全底箱（上摇盖 + 全底板，编号口径常作 0204）
  * 顶部：摇盖封口（可反复开合）；底部：全底板 + 锁舌 + 防尘翼（一次封箱）。
  * 常用于果蔬箱、洗衣液箱等重载瓦楞箱。
  */
@@ -15,7 +15,7 @@ const fields: FieldSpec[] = [
 
 export const fruitBox = {
   id: 'fruit-box',
-  name: '0204 摇盖全底箱',
+  name: '摇盖全底箱（果蔬·重载）',
   category: '瓦楞纸箱',
   fields,
   build(p: BoxParams): DielineResult {

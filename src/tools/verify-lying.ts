@@ -10,6 +10,7 @@ import { fefco0201 } from '../engine/builders/fefco0201';
 import { fefco0200 } from '../engine/builders/fefco0200';
 import { shortFlapBox } from '../engine/builders/shortFlapBox';
 import { mailer0427 } from '../engine/builders/mailer0427';
+import { fefco427Std } from '../engine/builders/fefco427Std';
 import { mailerFlat } from '../engine/builders/mailerFlat';
 import { tuckTuckBox } from '../engine/builders/tuckTuckBox';
 import { reverseTuck } from '../engine/builders/reverseTuck';
@@ -131,9 +132,12 @@ const outerH = Math.max(p.lidH, 10);
 const rim = (name: string): Part => [name, outerL, outerW, outerH];
 const single: Part[] = [['主体', p.L, p.W, p.H]];
 verify('0201', (pp) => fefco0201.build(pp), single);
-verify('0200 全叠盖箱', (pp) => fefco0200.build(pp), single);
+verify('0200 对口箱（共边无槽）', (pp) => fefco0200.build(pp), single);
 verify('短摇盖开口箱', (pp) => shortFlapBox.build(pp), single);
-verify('0427 飞机盒', (pp) => mailer0427.build(pp), single);
+verify('管式飞机盒（插舌盖）', (pp) => mailer0427.build(pp), single);
+// 一体式双层扣盒：根 = 底板平躺贴地，x=底板宽、y=竖直盒高、z=盖深
+// 0427 属扁面快递盒，用 H < B 的代表尺寸核验（H > B 时花瓣插舌穿出对面内壁，builder 已给警告）
+verify('一体式飞机盒（免胶双层扣）', (pp) => fefco427Std.build({ ...pp, W: 278, H: 100 }), [['主体', 460, 97, 286]]);
 verify('平压底飞机盒', (pp) => mailerFlat.build(pp), single);
 verify('双插舌盒', (pp) => tuckTuckBox.build(pp), single);
 verify('反插盒', (pp) => reverseTuck.build(pp), single);
@@ -143,16 +147,16 @@ verify('抽屉盒', (pp) => drawerBox.build(pp), [['内托', p.L, p.W, p.H], rim
 verify('天地盖', (pp) => boxLid.build(pp), [['底盒', p.L, p.W, p.H], rim('盖盒')]);
 // 管式盒型（root=col2 正面平铺贴地）与托盘式盒型（root=前壁/脊平铺贴地）
 // 均直接折合成 L×W×H 平躺姿态，折叠全程盒子朝向不变
-verify('0204 全底箱', (pp) => fruitBox.build(pp), single);
+verify('摇盖全底箱', (pp) => fruitBox.build(pp), single);
 verify('提手飞机盒', (pp) => cakeBox.build(pp), single);
 verify('一页成型箱', (pp) => onePageBox.build(pp), single);
 verify('书型翻盖盒', (pp) => bookBox.build(pp), single);
 // 枕形盒：L 沿 x、枕厚 W 竖直、枕高 H 沿 z（平躺）
 verify('枕形盒', (pp) => pillowBox.build(pp), single);
 // 卷边托盘：底板 2S 沿 x、墙高竖直、端部叠压沿 z（平躺）
-verify('0422 卷边托盘', (pp) => rollTray0422.build(pp), [['托盘', 462, 285, 226]]);
-verify('0421 卷边托盘', (pp) => rollTray0421.build(pp), [['托盘', 466, 295, 226]]);
-verify('427 耳锁盖托盘', (pp) => trayEarlock427.build(pp), [['托盘', 472, 288, 244]]);
+verify('卷边托盘（双壁免胶）', (pp) => rollTray0422.build(pp), [['托盘', 462, 285, 226]]);
+verify('卷边托盘（铰接盖）', (pp) => rollTray0421.build(pp), [['托盘', 466, 295, 226]]);
+verify('耳朵锁托盘（插舌自锁）', (pp) => trayEarlock427.build(pp), [['托盘', 472, 288, 244]]);
 verify('瓦楞提手箱', (pp) => handleBox.build(pp), single);
 verify('邮购信封盒', (pp) => bookWrap.build(pp), [['信封盒', 434, 278, 214]]);
 verify('六角柱礼盒', (pp) => hexBox.build(pp), [['六角筒', 501, 278, 434]]);

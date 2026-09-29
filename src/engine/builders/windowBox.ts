@@ -50,7 +50,7 @@ function addWindowHole(trees: PanelNode[], hole: [number, number][]): boolean {
 
 export const windowBox = {
   id: 'window-box',
-  name: '开窗摇盖箱（正面展示窗）',
+  name: '开窗对口箱（正面展示窗）',
   category: '瓦楞纸箱',
   fields,
   build(p: BoxParams): DielineResult {

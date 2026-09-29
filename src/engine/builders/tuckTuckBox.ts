@@ -13,7 +13,7 @@ const fields: FieldSpec[] = [
 
 export const tuckTuckBox = {
   id: 'tuck-tuck',
-  name: '双插舌盒（上下插舌）',
+  name: '双插盒（上下直插舌）',
   category: '折叠纸盒',
   fields,
   build(p: BoxParams): DielineResult {

@@ -15,7 +15,7 @@ const fields: FieldSpec[] = [
 
 export const boxLid = {
   id: 'box-lid',
-  name: '天地盖（盒 + 盖）',
+  name: '天地盖（底＋盖·全底板）',
   category: '礼盒 / 折叠纸盒',
   fields,
   build(p: BoxParams): DielineResult {

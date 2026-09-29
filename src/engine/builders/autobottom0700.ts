@@ -14,7 +14,7 @@ const fields: FieldSpec[] = [
 
 export const autobottom0700 = {
   id: 'autobottom-0700',
-  name: '自锁底盒（0700）',
+  name: '0700 自锁底盒（扣底）',
   category: '折叠纸盒',
   fields,
   build(p: BoxParams): DielineResult {

@@ -21,7 +21,7 @@ const fields: FieldSpec[] = [
 
 export const bookWrap = {
   id: 'book-wrap-mailer',
-  name: '邮购信封盒（书籍邮寄 Book Wrap）',
+  name: '信封盒（书籍邮寄·免胶）',
   category: '快递 / 电商',
   fields,
   build(p: BoxParams): DielineResult {

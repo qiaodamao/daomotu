@@ -47,7 +47,7 @@ function findNodes(nodes: PanelNode[], ids: string[]): Map<string, PanelNode> {
 
 export const handleBox = {
   id: 'handle-box',
-  name: '瓦楞提手箱',
+  name: '提手箱（对口盖面冲孔）',
   category: '瓦楞纸箱',
   fields,
   build(p: BoxParams): DielineResult {

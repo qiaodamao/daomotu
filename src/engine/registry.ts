@@ -8,9 +8,12 @@ import { fefco0201 } from './builders/fefco0201';
 import { fefco0200 } from './builders/fefco0200';
 import { fefco0202 } from './builders/fefco0202';
 import { fefco0203 } from './builders/fefco0203';
+import { hscBox } from './builders/hscBox';
+import { telescopeBox } from './builders/telescopeBox';
 import { shortFlapBox } from './builders/shortFlapBox';
 import { windowBox } from './builders/windowBox';
 import { mailer0427 } from './builders/mailer0427';
+import { fefco427Std } from './builders/fefco427Std';
 import { mailerFlat } from './builders/mailerFlat';
 import { mailerDouble } from './builders/mailerDouble';
 import { autobottom0700 } from './builders/autobottom0700';
@@ -43,6 +46,8 @@ export const REGISTRY: BoxBuilder[] = [
   fefco0200,
   fefco0202,
   fefco0203,
+  hscBox,
+  telescopeBox,
   shortFlapBox,
   windowBox,
   fruitBox,
@@ -52,6 +57,7 @@ export const REGISTRY: BoxBuilder[] = [
   handleBox,
   // 快递 / 电商
   mailer0427,
+  fefco427Std,
   mailerFlat,
   mailerDouble,
   cakeBox,

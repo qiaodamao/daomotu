@@ -15,7 +15,7 @@ const fields: FieldSpec[] = [
 
 export const shortFlapBox = {
   id: 'short-flap-box',
-  name: '短摇盖开口箱',
+  name: '短翼箱（浅摇盖·敞口内箱）',
   category: '瓦楞纸箱',
   fields,
   build(p: BoxParams): DielineResult {
