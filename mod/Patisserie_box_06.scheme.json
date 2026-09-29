@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "plmpacklib.parametricScheme",
+  "id": "74fbcfb4-bcd0-435c-b51a-888c9fce5cf6",
+  "name": "Patisserie_box_06",
+  "description": "FEFCO F_0426",
+  "slug": "Patisserie_box_06",
+  "source": {
+    "system": "PLMPackLib",
+    "database": "PicParam.db",
+    "documentId": 24,
+    "documentGuid": "8cd7bf66-4021-4ed4-bd3d-a2fc25e6e56f",
+    "componentGuid": "74fbcfb4-bcd0-435c-b51a-888c9fce5cf6",
+    "pluginFile": {
+      "guid": "34b82cb4-ec8d-44f5-9b76-6f364309ae45",
+      "extension": "dll",
+      "fileNameHint": "34b82cb4-ec8d-44f5-9b76-6f364309ae45.dll"
+    },
+    "treePath": [
+      "Root",
+      "01   PACKAGING",
+      "Food / Patisserie",
+      "Patisserie_box_06",
+      "Patisserie_box_06"
+    ],
+    "treeNodeId": 98
+  },
+  "thumbnail": null,
+  "parameters": [
+    {
+      "name": "e",
+      "value": 2,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "ep1",
+      "value": 2,
+      "unit": "mm",
+      "role": "thickness"
+    },
+    {
+      "name": "L",
+      "value": 200,
+      "unit": "mm",
+      "role": "length"
+    },
+    {
+      "name": "B",
+      "value": 120,
+      "unit": "mm",
+      "role": "width"
+    },
+    {
+      "name": "H",
+      "value": 80,
+      "unit": "mm",
+      "role": "height"
+    },
+    {
+      "name": "mtl",
+      "value": 40,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "R",
+      "value": 10,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "v6",
+      "value": 6,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "r6",
+      "value": 3,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "v8",
+      "value": 1,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "th",
+      "value": 12,
+      "unit": "mm",
+      "role": "thickness"
+    },
+    {
+      "name": "m1",
+      "value": 20,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m2",
+      "value": 22,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m3",
+      "value": 4,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m4",
+      "value": 4,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m5",
+      "value": 7,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m6",
+      "value": 8,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m7",
+      "value": 8,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m8",
+      "value": 8,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m9",
+      "value": 2,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m10",
+      "value": 3,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m11",
+      "value": 9,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "m13",
+      "value": 12,
+      "unit": "mm",
+      "role": null
+    }
+  ],
+  "geometry": {
+    "status": "ready",
+    "format": "pathJson",
+    "payload": {
+      "format": "pathJson",
+      "unit": "mm",
+      "generator": {
+        "id": "patisserie_box_06",
+        "version": "1.0.0",
+        "provenance": "sourcePort",
+        "sourceRef": "Patisserie_box_06.embedded.cs (cotations omitted)"
+      },
+      "parametersUsed": {
+        "e": 2,
+        "ep1": 2,
+        "L": 200,
+        "B": 120,
+        "H": 80,
+        "mtl": 40,
+        "R": 10,
+        "v6": 6,
+        "r6": 3,
+        "v8": 1,
+        "th": 12,
+        "m1": 20,
+        "m2": 22,
+        "m3": 4,
+        "m4": 4,
+        "m5": 7,
+        "m6": 8,
+        "m7": 8,
+        "m8": 8,
+        "m9": 2,
+        "m10": 3,
+        "m11": 9,
+        "m13": 12
+      },
+      "bounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 388,
+        "maxY": 625
+      },
+      "entities": [
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 82,
+          "y0": 97,
+          "x1": 91,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 82,
+          "y0": 185,
+          "x1": 84,
+          "y1": 187
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 0,
+          "y0": 187,
+          "x1": 84,
+          "y1": 187
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 82,
+          "y0": 327,
+          "x1": 82,
+          "y1": 414
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 416,
+          "x1": 91,
+          "y1": 540
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 84,
+          "y0": 325,
+          "x1": 0,
+          "y1": 325
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 84,
+          "y0": 325,
+          "x1": 84,
+          "y1": 187
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 82,
+          "y0": 327,
+          "x1": 84,
+          "y1": 325
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 82,
+          "y0": 97,
+          "x1": 82,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 0,
+          "y0": 77,
+          "x1": 0,
+          "y1": 414
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 85,
+          "x1": 91,
+          "y1": 3
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 14.668287193758571,
+          "y0": 513.0274229092217,
+          "x1": 91,
+          "y1": 540
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 8,
+          "y0": 452.3283873045252,
+          "x1": 8,
+          "y1": 503.59875970722294
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 14.67629126048941,
+          "y0": 442.89689960560406,
+          "x1": 91,
+          "y1": 416
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 414,
+          "x1": 0,
+          "y1": 414
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 414,
+          "x1": 91,
+          "y1": 416
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 76,
+          "y0": 77,
+          "x1": 0,
+          "y1": 77
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 76,
+          "y0": 94,
+          "x1": 76,
+          "y1": 77
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 79,
+          "y0": 97,
+          "x1": 82,
+          "y1": 97
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 306,
+          "y0": 97,
+          "x1": 299,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 306,
+          "y0": 185,
+          "x1": 304,
+          "y1": 187
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 388,
+          "y0": 187,
+          "x1": 304,
+          "y1": 187
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 306,
+          "y0": 414,
+          "x1": 306,
+          "y1": 327
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 306,
+          "y0": 327,
+          "x1": 82,
+          "y1": 327
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 416,
+          "x1": 299,
+          "y1": 540
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 304,
+          "y0": 325,
+          "x1": 388,
+          "y1": 325
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 304,
+          "y0": 325,
+          "x1": 304,
+          "y1": 187
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 304,
+          "y0": 325,
+          "x1": 306,
+          "y1": 327
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 306,
+          "y0": 97,
+          "x1": 306,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 388,
+          "y0": 77,
+          "x1": 388,
+          "y1": 414
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 3,
+          "x1": 299,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 367.67907110940433,
+          "y0": 512.8266089489163,
+          "x1": 299,
+          "y1": 540
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 374,
+          "y0": 503.52798347135524,
+          "x1": 374,
+          "y1": 452.3987669610398
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 367.67049082630956,
+          "y0": 443.09675120670045,
+          "x1": 299,
+          "y1": 416
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 414,
+          "x1": 388,
+          "y1": 414
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 414,
+          "x1": 299,
+          "y1": 416
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 542,
+          "x1": 91,
+          "y1": 542
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 312,
+          "y0": 77,
+          "x1": 388,
+          "y1": 77
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 312,
+          "y0": 94,
+          "x1": 312,
+          "y1": 77
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 309,
+          "y0": 97,
+          "x1": 306,
+          "y1": 97
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 117,
+          "y0": 3,
+          "x1": 117,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 157,
+          "y0": 0,
+          "x1": 117,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 157,
+          "y0": 3,
+          "x1": 157,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 231,
+          "y0": 3,
+          "x1": 231,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 271,
+          "y0": 0,
+          "x1": 231,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 271,
+          "y0": 3,
+          "x1": 271,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 271,
+          "y0": 185,
+          "x1": 271,
+          "y1": 190
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 231,
+          "y0": 190,
+          "x1": 271,
+          "y1": 190
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 231,
+          "y0": 185,
+          "x1": 231,
+          "y1": 190
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 157,
+          "y0": 185,
+          "x1": 157,
+          "y1": 190
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 117,
+          "y0": 190,
+          "x1": 157,
+          "y1": 190
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 117,
+          "y0": 185,
+          "x1": 117,
+          "y1": 190
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 117,
+          "y0": 3,
+          "x1": 91,
+          "y1": 3
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 231,
+          "y0": 3,
+          "x1": 157,
+          "y1": 3
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 271,
+          "y0": 3,
+          "x1": 299,
+          "y1": 3
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 117,
+          "y0": 185,
+          "x1": 82,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 117,
+          "y0": 185,
+          "x1": 157,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 157,
+          "y0": 185,
+          "x1": 231,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 231,
+          "y0": 185,
+          "x1": 271,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 271,
+          "y0": 185,
+          "x1": 306,
+          "y1": 185
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 542,
+          "x1": 91,
+          "y1": 540
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 615,
+          "x1": 91,
+          "y1": 542
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 542,
+          "x1": 299,
+          "y1": 540
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 615,
+          "x1": 299,
+          "y1": 542
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 299,
+          "y0": 415,
+          "x1": 91,
+          "y1": 415
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 289,
+          "y0": 625,
+          "x1": 101,
+          "y1": 625
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 91,
+          "y0": 85,
+          "x1": 188,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 82,
+          "y0": 97,
+          "x1": 188,
+          "y1": 97
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 199,
+          "y0": 103,
+          "x1": 189,
+          "y1": 103
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 189,
+          "y0": 79,
+          "x1": 199,
+          "y1": 79
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 188,
+          "y0": 85,
+          "x1": 188,
+          "y1": 80
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 188,
+          "y0": 97,
+          "x1": 188,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 188,
+          "y0": 102,
+          "x1": 188,
+          "y1": 97
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 200,
+          "y0": 97,
+          "x1": 200,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 200,
+          "y0": 97,
+          "x1": 306,
+          "y1": 97
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 200,
+          "y0": 85,
+          "x1": 299,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 200,
+          "y0": 80,
+          "x1": 200,
+          "y1": 85
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 200,
+          "y0": 85,
+          "x1": 200,
+          "y1": 97
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 18,
+          "cy": 503.59875970722294,
+          "radius": 9.999999999999973,
+          "angleBeg": 109.46137277153343,
+          "angleEnd": 180,
+          "x0": 14.66828719375857,
+          "y0": 513.0274229092217,
+          "x1": 8.000000000000027,
+          "y1": 503.59875970722294
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 18,
+          "cy": 452.3283873045252,
+          "radius": 10,
+          "angleBeg": 180,
+          "angleEnd": 250.5872587815751,
+          "x0": 8,
+          "y0": 452.3283873045252,
+          "x1": 14.676291260489409,
+          "y1": 442.89689960560406
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 79,
+          "cy": 94,
+          "radius": 3,
+          "angleBeg": 90,
+          "angleEnd": 180,
+          "x0": 79,
+          "y0": 97,
+          "x1": 76,
+          "y1": 94
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 101,
+          "cy": 615,
+          "radius": 10,
+          "angleBeg": 90,
+          "angleEnd": 180,
+          "x0": 101,
+          "y0": 625,
+          "x1": 91,
+          "y1": 615
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 364,
+          "cy": 452.3987669610398,
+          "radius": 10.000000000000034,
+          "angleBeg": 291.53374127417396,
+          "angleEnd": 360,
+          "x0": 367.67049082630956,
+          "y0": 443.09675120670045,
+          "x1": 374.00000000000006,
+          "y1": 452.3987669610398
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 364,
+          "cy": 503.52798347135524,
+          "radius": 10,
+          "angleBeg": 0,
+          "angleEnd": 68.41339883058278,
+          "x0": 374,
+          "y0": 503.52798347135524,
+          "x1": 367.67907110940433,
+          "y1": 512.8266089489163
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 309,
+          "cy": 94,
+          "radius": 3,
+          "angleBeg": 0,
+          "angleEnd": 90,
+          "x0": 312,
+          "y0": 94,
+          "x1": 309,
+          "y1": 97
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 289,
+          "cy": 615,
+          "radius": 10,
+          "angleBeg": 0,
+          "angleEnd": 90,
+          "x0": 299,
+          "y0": 615,
+          "x1": 289,
+          "y1": 625
+        }
+      ],
+      "svg": null
+    }
+  },
+  "meta": {
+    "exportedAt": "2026-09-29T05:41:02.370Z",
+    "tool": "tools/catalog-export/viewer/studio.js",
+    "parameterCount": 23,
+    "notes": "Mapped generator patisserie_box_06 via componentGuid",
+    "imposition": null
+  }
+}

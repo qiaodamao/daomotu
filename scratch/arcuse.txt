@@ -1,0 +1,31 @@
+=== rollTray ===
+kind: 'arc',
+      layer: 'cut',
+      c: { x: r3(cx), y: r3(cy) },
+      r: r3(r),
+      a0: r3(a0),
+      a1: r3(a1),
+    });
+
+  // ---- 底板铰线（墙 / H4）与锁孔 ----
+  c.line('crease', -T, -root, T, -root); // 前墙铰线
+  c.line('crease', -T, root, T, root); // 后墙铰线
+  for (const sx of [1, -1] as const) {
+    // H4 铰线（三段，避开底板锁孔区）
+    for (const [a, b] of [
+      [-halfW, -(holeC + hh)],
+      [-(holeC - hh), holeC - hh]
+=== fefco427Std ===
+kind: 'arc', layer, c: { x: mcx, y: mcy }, r: r3(r), a0: r3(from), a1: r3(from + span) });
+}
+
+/** 弧上采样点（3D 轮廓用，度数区间） */
+function arcPts(c: P, r: number, a0: number, a1: number, n: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let i = 1; i < n; i++) {
+    const a = rad(a0 + ((a1 - a0) * i) / n);
+    out.push([r3(c.x + r * Math.cos(a)), r3(c.y + r * Math.sin(a))]);
+  }
+  return out
+=== mailer0427 ===
+no arc

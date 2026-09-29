@@ -1,0 +1,67 @@
+
+== 0201 对口箱（常规开槽） == entities=34 unfold=1326.0x492.0 warnings=0
+
+== 0200 对口箱（摇盖共边无槽） == entities=34 unfold=1326.0x492.0 warnings=1
+
+== 0202 对口箱（外盖加长重叠） == entities=34 unfold=1326.0x492.0 warnings=1
+
+== 0203 大盖箱（全叠盖） == entities=34 unfold=1326.0x706.0 warnings=1
+
+== 半开槽套盖箱（HSC） == entities=34 unfold=1326.0x599.0 warnings=1
+
+== 套盖箱（两片式天地盖） == entities=44 unfold=2710.0x385.0 warnings=1
+
+== 短翼箱（浅摇盖·敞口内箱） == entities=34 unfold=1326.0x420.7 warnings=1
+
+== 开窗对口箱（正面展示窗） == entities=42 unfold=1326.0x492.0 warnings=1
+
+== 摇盖全底箱（果蔬·重载） == entities=39 unfold=1326.0x599.0 warnings=0
+
+== 卷边托盘（双壁免胶） == entities=84 unfold=1573.0x771.0 warnings=2
+
+== 卷边托盘（铰接盖） == entities=98 unfold=1573.0x1030.0 warnings=2
+
+== 耳朵锁托盘（插舌自锁） == entities=118 unfold=1605.0x1120.0 warnings=2
+
+== 提手箱（对口盖面冲孔） == entities=42 unfold=1326.0x528.0 warnings=2
+
+== 斜口展示盒（连体翻盖） == entities=80 unfold=1599.0x986.0 warnings=1
+
+== 甜点展示盒（连盖双折铰边） == entities=86 unfold=1017.0x1194.5 warnings=3
+
+== 管式飞机盒（插舌盖） == entities=44 unfold=1326.0x718.0 warnings=0
+
+== 一体式飞机盒（免胶双层扣） == entities=140 unfold=1572.0x1270.0 warnings=3
+
+== 平压底飞机盒（胶带封底） == entities=46 unfold=1326.0x615.0 warnings=1
+
+== 双联飞机盒（一版两件） == entities=88 unfold=2662.0x718.0 warnings=1
+
+== 提手飞机盒（蛋糕·外卖） == entities=48 unfold=1326.0x718.0 warnings=1
+
+== 一页箱（免胶·无糊口） == entities=16 unfold=862.0x770.0 warnings=2
+
+== 信封盒（书籍邮寄·免胶） == entities=25 unfold=990.0x1274.0 warnings=3
+
+== 双插盒（上下直插舌） == entities=44 unfold=1326.0x730.0 warnings=0
+
+== 反插盒（上下反向插舌） == entities=44 unfold=1326.0x730.0 warnings=0
+
+== 0700 自锁底盒（扣底） == entities=54 unfold=1326.0x616.0 warnings=1
+
+== 枕头盒（弧形模切） == entities=26 unfold=844.9x770.0 warnings=0
+
+== 天地盖（底＋盖·全底板） == entities=54 unfold=2700.0x492.0 warnings=0
+
+== 滑盖盒（抽屉式·内托＋套筒） == entities=37 unfold=2700.0x492.0 warnings=1
+
+== 书型盒（翻盖·连体脊） == entities=30 unfold=868.0x788.0 warnings=1
+
+== 六角筒礼盒 == entities=28 unfold=1533.4x1146.0 warnings=1
+PASS  0201 展开总宽: got=1326 want=1326
+PASS  0201 展开总高: got=492 want=492
+PASS  0201 摇盖: got=107 want=107
+PASS  内→制造长: got=434 want=434
+天地盖 底=434x214x278 毛面积=1.039086
+
+全部通过

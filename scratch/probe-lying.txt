@@ -1,0 +1,6 @@
+presentoir 部件0 平躺实测 x=328.0 y=176.0 z=232.0
+presentoir 根面板展开跨度 x=328.0 y=228.0  中途最小比 x=1.000 z=1.000
+presentoir unfold=756.0x758.0 entities=80 warnings=1
+patisserie 部件0 平躺实测 x=224.0 y=88.0 z=142.0
+patisserie 根面板展开跨度 x=220.0 y=142.0  中途最小比 x=1.000 z=1.000
+patisserie unfold=388.0x625.0 entities=86 warnings=1

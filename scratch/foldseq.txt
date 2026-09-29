@@ -1,0 +1,7 @@
+fold 0.00  x 756  y 0  z 758  minY -0.0
+fold 0.25  x 656  y 137  z 691  minY -0.0
+fold 0.40  x 528  y 242  z 581  minY -0.0
+fold 0.55  x 466  y 416  z 236  minY -0.0
+fold 0.70  x 328  y 217  z 305  minY -0.0
+fold 0.85  x 328  y 104  z 304  minY -0.0
+fold 1.00  x 328  y 104  z 232  minY -0.0

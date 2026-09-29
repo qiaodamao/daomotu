@@ -1,0 +1,954 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "plmpacklib.parametricScheme",
+  "id": "71c5e2a3-d693-4f25-bbbe-2ecd796be2bb",
+  "name": "boite presentoir",
+  "description": "boite présentoir",
+  "slug": "boite_presentoir",
+  "source": {
+    "system": "PLMPackLib",
+    "database": "PicParam.db",
+    "documentId": 7,
+    "documentGuid": "8e63e82e-828a-4579-b60e-6ac77b712b3d",
+    "componentGuid": "71c5e2a3-d693-4f25-bbbe-2ecd796be2bb",
+    "pluginFile": {
+      "guid": "723103fc-4d99-4bb4-96ad-6f7b2b74608a",
+      "extension": "dll",
+      "fileNameHint": "723103fc-4d99-4bb4-96ad-6f7b2b74608a.dll"
+    },
+    "treePath": [
+      "Root",
+      "01   PACKAGING",
+      "Boite_Presentoir",
+      "boite presentoir"
+    ],
+    "treeNodeId": 71
+  },
+  "thumbnail": null,
+  "parameters": [
+    {
+      "name": "ep1",
+      "value": 6,
+      "unit": "mm",
+      "role": "thickness"
+    },
+    {
+      "name": "L",
+      "value": 300,
+      "unit": "mm",
+      "role": "length"
+    },
+    {
+      "name": "B",
+      "value": 220,
+      "unit": "mm",
+      "role": "width"
+    },
+    {
+      "name": "H",
+      "value": 100,
+      "unit": "mm",
+      "role": "height"
+    },
+    {
+      "name": "HF",
+      "value": 44,
+      "unit": "mm",
+      "role": null
+    },
+    {
+      "name": "LFt",
+      "value": 130,
+      "unit": "mm",
+      "role": null
+    }
+  ],
+  "geometry": {
+    "status": "ready",
+    "format": "pathJson",
+    "payload": {
+      "format": "pathJson",
+      "unit": "mm",
+      "generator": {
+        "id": "boite_presentoir",
+        "version": "1.0.0",
+        "provenance": "sourcePort",
+        "sourceRef": "boite_presentoir.embedded.cs (cotations omitted)"
+      },
+      "parametersUsed": {
+        "ep1": 6,
+        "L": 300,
+        "B": 220,
+        "H": 100,
+        "HF": 44,
+        "LFt": 130
+      },
+      "bounds": {
+        "minX": 0,
+        "minY": 0,
+        "maxX": 756,
+        "maxY": 758
+      },
+      "entities": [
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 104,
+          "x1": 536,
+          "y1": 104
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 332,
+          "x1": 220,
+          "y1": 332
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 104,
+          "x1": 220,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 0,
+          "x1": 536,
+          "y1": 104
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 0,
+          "x1": 214,
+          "y1": 4
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 4,
+          "x1": 114,
+          "y1": 4
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 104,
+          "x1": 214,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 332,
+          "x1": 214,
+          "y1": 334
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 114,
+          "y0": 334,
+          "x1": 214,
+          "y1": 334
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 114,
+          "y0": 334,
+          "x1": 102,
+          "y1": 328
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 102,
+          "y0": 328,
+          "x1": 8,
+          "y1": 328
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 8,
+          "y0": 108,
+          "x1": 102,
+          "y1": 108
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 102,
+          "y0": 108,
+          "x1": 114,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 114,
+          "y0": 102,
+          "x1": 214,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 102,
+          "y0": 328,
+          "x1": 102,
+          "y1": 108
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 332,
+          "x1": 220,
+          "y1": 434
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 434,
+          "x1": 536,
+          "y1": 434
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 434,
+          "x1": 536,
+          "y1": 332
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 430,
+          "x1": 114,
+          "y1": 430
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 0,
+          "x1": 542,
+          "y1": 4
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 4,
+          "x1": 642,
+          "y1": 4
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 104,
+          "x1": 542,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 332,
+          "x1": 542,
+          "y1": 334
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 334,
+          "x1": 642,
+          "y1": 334
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 642,
+          "y0": 334,
+          "x1": 654,
+          "y1": 328
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 654,
+          "y0": 328,
+          "x1": 748,
+          "y1": 328
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 748,
+          "y0": 108,
+          "x1": 654,
+          "y1": 108
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 654,
+          "y0": 108,
+          "x1": 642,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 642,
+          "y0": 102,
+          "x1": 542,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 654,
+          "y0": 328,
+          "x1": 654,
+          "y1": 108
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 430,
+          "x1": 642,
+          "y1": 430
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 260,
+          "y0": 60,
+          "x1": 498.15811,
+          "y1": 60
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 498.15811,
+          "y0": 60,
+          "x1": 516,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 0,
+          "x1": 240,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 516,
+          "y0": 0,
+          "x1": 536,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 260,
+          "y0": 60,
+          "x1": 240,
+          "y1": 0
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 434,
+          "x1": 220,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 536,
+          "y0": 434,
+          "x1": 536,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 226,
+          "y0": 738,
+          "x1": 226,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 530,
+          "y0": 738,
+          "x1": 530,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 656,
+          "x1": 226,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 510,
+          "y0": 758,
+          "x1": 246,
+          "y1": 758
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 226,
+          "y0": 656,
+          "x1": 530,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 530,
+          "y0": 656,
+          "x1": 536,
+          "y1": 656
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 430,
+          "x1": 220,
+          "y1": 434
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 430,
+          "x1": 536,
+          "y1": 434
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 334,
+          "x1": 214,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 102,
+          "x1": 214,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 256,
+          "x1": 228,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 214,
+          "y0": 256,
+          "x1": 214,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 228,
+          "y0": 180,
+          "x1": 228,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 228,
+          "y0": 180,
+          "x1": 214,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 8,
+          "y0": 256,
+          "x1": 0,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 0,
+          "y0": 256,
+          "x1": 0,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 0,
+          "y0": 180,
+          "x1": 8,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 8,
+          "y0": 328,
+          "x1": 8,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 8,
+          "y0": 180,
+          "x1": 8,
+          "y1": 108
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 114,
+          "y0": 334,
+          "x1": 114,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 642,
+          "y0": 334,
+          "x1": 642,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 334,
+          "x1": 542,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 102,
+          "x1": 542,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 256,
+          "x1": 532,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 532,
+          "y0": 180,
+          "x1": 532,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 532,
+          "y0": 180,
+          "x1": 542,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 748,
+          "y0": 256,
+          "x1": 756,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 756,
+          "y0": 256,
+          "x1": 756,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 756,
+          "y0": 180,
+          "x1": 748,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 748,
+          "y0": 328,
+          "x1": 748,
+          "y1": 256
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 748,
+          "y0": 180,
+          "x1": 748,
+          "y1": 108
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 542,
+          "y0": 256,
+          "x1": 542,
+          "y1": 180
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 220,
+          "y0": 545,
+          "x1": 313,
+          "y1": 545
+        },
+        {
+          "type": "segment",
+          "lineType": "CREASING",
+          "group": 1,
+          "layer": 1,
+          "x0": 443,
+          "y0": 545,
+          "x1": 536,
+          "y1": 545
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 313,
+          "y0": 545,
+          "x1": 313,
+          "y1": 545
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 443,
+          "y0": 545,
+          "x1": 443,
+          "y1": 545
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 378,
+          "y0": 480,
+          "x1": 378,
+          "y1": 480
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 114,
+          "y0": 430,
+          "x1": 114,
+          "y1": 334
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 114,
+          "y0": 4,
+          "x1": 114,
+          "y1": 102
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 642,
+          "y0": 430,
+          "x1": 642,
+          "y1": 334
+        },
+        {
+          "type": "segment",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "x0": 642,
+          "y0": 4,
+          "x1": 642,
+          "y1": 102
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 246,
+          "cy": 738,
+          "radius": 20,
+          "angleBeg": 90,
+          "angleEnd": 180,
+          "x0": 246,
+          "y0": 758,
+          "x1": 226,
+          "y1": 738
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 510,
+          "cy": 738,
+          "radius": 20,
+          "angleBeg": 0,
+          "angleEnd": 90,
+          "x0": 530,
+          "y0": 738,
+          "x1": 510,
+          "y1": 758
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 378,
+          "cy": 545,
+          "radius": 65,
+          "angleBeg": 270,
+          "angleEnd": 360,
+          "x0": 378,
+          "y0": 480,
+          "x1": 443,
+          "y1": 545
+        },
+        {
+          "type": "arc",
+          "lineType": "CUT",
+          "group": 1,
+          "layer": 1,
+          "cx": 378,
+          "cy": 545,
+          "radius": 65,
+          "angleBeg": 180,
+          "angleEnd": 270,
+          "x0": 313,
+          "y0": 545,
+          "x1": 378,
+          "y1": 480
+        }
+      ],
+      "svg": null
+    }
+  },
+  "meta": {
+    "exportedAt": "2026-09-29T05:39:51.132Z",
+    "tool": "tools/catalog-export/viewer/studio.js",
+    "parameterCount": 6,
+    "notes": "Mapped generator boite_presentoir via componentGuid",
+    "imposition": null
+  }
+}

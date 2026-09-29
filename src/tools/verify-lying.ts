@@ -27,7 +27,10 @@ import { rollTray0422, rollTray0421, trayEarlock427 } from '../engine/builders/r
 import { bookWrap } from '../engine/builders/bookWrap';
 import { hexBox } from '../engine/builders/hexBox';
 import { handleBox } from '../engine/builders/handleBox';
+import { presentoirBox } from '../engine/builders/presentoirBox';
+import { patisserieBox } from '../engine/builders/patisserieBox';
 import { DEFAULT_PARAMS } from '../engine/params';
+import { boxDefaults } from '../engine/registry';
 import { DielineResult, PanelNode } from '../engine/types';
 import { buildPanelTreeObject, applyFold, groundModel, PanelModel } from '../render/render3d';
 
@@ -160,6 +163,11 @@ verify('耳朵锁托盘（插舌自锁）', (pp) => trayEarlock427.build(pp), [[
 verify('瓦楞提手箱', (pp) => handleBox.build(pp), single);
 verify('邮购信封盒', (pp) => bookWrap.build(pp), [['信封盒', 434, 278, 214]]);
 verify('六角柱礼盒', (pp) => hexBox.build(pp), [['六角筒', 501, 278, 434]]);
+// 一体式连盖盒型：用各自样版尺寸核验（平躺姿态 = 底板贴地，x 长 × y 竖直高 × z 深）
+// 斜口展示盒 300×220×100 t=6 → 328 × 176 × 232
+verify('斜口展示盒（连体翻盖）', () => presentoirBox.build(boxDefaults('presentoir-display')), [['主体', 328, 104, 232]]);
+// 甜点展示盒 200×120×80 t=2 → L+12t=224 × H+4t=88 × B+11t=142
+verify('甜点展示盒（连盖双折铰边）', () => patisserieBox.build(boxDefaults('patisserie-display')), [['主体', 224, 88, 142]]);
 
 console.log(fail === 0 ? '\n全部通过' : `\n${fail} 项失败`);
 process.exit(fail === 0 ? 0 : 1);

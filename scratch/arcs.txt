@@ -1,0 +1,4 @@
+{"type":"arc","lineType":"CUT","group":1,"layer":1,"cx":246,"cy":738,"radius":20,"angleBeg":90,"angleEnd":180,"x0":246,"y0":758,"x1":226,"y1":738}
+{"type":"arc","lineType":"CUT","group":1,"layer":1,"cx":510,"cy":738,"radius":20,"angleBeg":0,"angleEnd":90,"x0":530,"y0":738,"x1":510,"y1":758}
+{"type":"arc","lineType":"CUT","group":1,"layer":1,"cx":378,"cy":545,"radius":65,"angleBeg":270,"angleEnd":360,"x0":378,"y0":480,"x1":443,"y1":545}
+{"type":"arc","lineType":"CUT","group":1,"layer":1,"cx":378,"cy":545,"radius":65,"angleBeg":180,"angleEnd":270,"x0":313,"y0":545,"x1":378,"y1":480}

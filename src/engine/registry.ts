@@ -28,6 +28,8 @@ import { onePageBox } from './builders/onePageBox';
 import { bookBox } from './builders/bookBox';
 import { rollTray0422, rollTray0421, trayEarlock427 } from './builders/rollTray';
 import { bookWrap } from './builders/bookWrap';
+import { presentoirBox } from './builders/presentoirBox';
+import { patisserieBox } from './builders/patisserieBox';
 import { hexBox } from './builders/hexBox';
 import { handleBox } from './builders/handleBox';
 
@@ -60,6 +62,8 @@ export const REGISTRY: BoxBuilder[] = [
   rollTray0421,
   trayEarlock427,
   handleBox,
+  presentoirBox,
+  patisserieBox,
   // 快递 / 电商
   mailer0427,
   fefco427Std,
