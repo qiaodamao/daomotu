@@ -16,6 +16,7 @@ export const mailer0427 = {
   id: 'mailer-0427',
   name: '管式飞机盒（插舌盖）',
   category: '快递 / 电商',
+  sample: { sizeType: 'inner' as const, L: 400, W: 300, H: 100, material: 'B', t: 3 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);

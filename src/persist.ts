@@ -8,7 +8,7 @@
  * 旧版完整 JSON 格式（?box=xx&p=<encoded JSON>）仍兼容读取
  */
 import { BoxParams, DEFAULT_PARAMS, SizeType } from './engine/params';
-import { DEFAULT_BOX_ID, REGISTRY } from './engine/registry';
+import { DEFAULT_BOX_ID, REGISTRY, boxDefaults } from './engine/registry';
 
 const LS_KEY = 'daomotu:v1';
 const VALID_BOX_IDS = new Set(REGISTRY.map((b) => b.id));
@@ -60,12 +60,14 @@ export function initState(): SavedState | null {
     const pParam = q.get('p');
     const hasShort = [...q.keys()].some((k) => k in SHORT_KEYS);
     if (boxParam || pParam || hasShort) {
+      const boxId = boxParam && VALID_BOX_IDS.has(boxParam) ? boxParam : DEFAULT_BOX_ID;
       let params: BoxParams;
       if (pParam) {
         // 旧版完整 JSON 格式
         params = clampParams(JSON.parse(pParam));
       } else {
-        params = { ...DEFAULT_PARAMS };
+        // 基准 = 该盒型的推荐尺寸（缺省即全局默认），再被 URL 显式参数覆盖
+        params = { ...boxDefaults(boxId) };
         for (const [sk, key] of Object.entries(SHORT_KEYS)) {
           const raw = q.get(sk);
           if (raw == null) continue;
@@ -80,7 +82,6 @@ export function initState(): SavedState | null {
         }
         params = clampParams(params);
       }
-      const boxId = boxParam && VALID_BOX_IDS.has(boxParam) ? boxParam : DEFAULT_BOX_ID;
       return { boxId, params };
     }
     const raw = localStorage.getItem(LS_KEY);
@@ -98,14 +99,15 @@ export function initState(): SavedState | null {
   return null;
 }
 
-/** 同步到 URL（replaceState 不产生历史记录；仅写差异，默认状态无 query） */
+/** 同步到 URL（replaceState 不产生历史记录；仅写与本盒型推荐值的差异，默认状态无 query） */
 export function syncURL(boxId: string, params: BoxParams) {
   try {
     const q = new URLSearchParams();
     if (boxId !== DEFAULT_BOX_ID) q.set('box', boxId);
+    const base = boxDefaults(boxId);
     for (const [sk, key] of Object.entries(SHORT_KEYS)) {
       const v = params[key];
-      if (v === DEFAULT_PARAMS[key]) continue;
+      if (v === base[key]) continue;
       if (key === 'sizeType') q.set(sk, ST_SHORT[v as SizeType]);
       else q.set(sk, String(v));
     }

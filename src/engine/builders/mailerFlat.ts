@@ -16,6 +16,7 @@ export const mailerFlat = {
   id: 'mailer-flat',
   name: '平压底飞机盒（胶带封底）',
   category: '快递 / 电商',
+  sample: { sizeType: 'inner' as const, L: 400, W: 300, H: 100, material: 'B', t: 3 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);

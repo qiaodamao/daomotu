@@ -150,7 +150,7 @@ export default function Editor() {
           <button type="button" className="btn" onClick={copyLink} title="复制分享链接">
             复制链接
           </button>
-          <button type="button" className="btn" onClick={resetParams} title="恢复默认参数">
+          <button type="button" className="btn" onClick={resetParams} title="恢复本盒型推荐尺寸">
             ⟲ 复位
           </button>
         </div>

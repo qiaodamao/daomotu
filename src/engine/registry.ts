@@ -2,7 +2,7 @@
  * 盒型注册表：所有盒型 builder 的统一入口
  * 新增盒型 = 新建 builder 文件 + 在此注册
  */
-import { BoxParams, FieldSpec } from './params';
+import { BoxParams, DEFAULT_PARAMS, FieldSpec } from './params';
 import { DielineResult } from './types';
 import { fefco0201 } from './builders/fefco0201';
 import { fefco0200 } from './builders/fefco0200';
@@ -37,6 +37,11 @@ export interface BoxBuilder {
   category: string;
   /** 参数面板字段声明（声明式渲染） */
   fields: FieldSpec[];
+  /**
+   * 该盒型的推荐尺寸（直达链接 / 切到本盒型时套用）。
+   * 只声明与全局默认不同的字段，其余沿用 DEFAULT_PARAMS。
+   */
+  sample?: Partial<BoxParams>;
   build: (p: BoxParams) => DielineResult;
 }
 
@@ -79,4 +84,9 @@ export const DEFAULT_BOX_ID = 'fefco-0201';
 
 export function getBuilder(id: string): BoxBuilder {
   return REGISTRY.find((b) => b.id === id) ?? REGISTRY[0];
+}
+
+/** 该盒型的默认参数（全局默认 + 盒型推荐尺寸覆盖） */
+export function boxDefaults(id: string): BoxParams {
+  return { ...DEFAULT_PARAMS, ...(getBuilder(id).sample ?? {}) };
 }

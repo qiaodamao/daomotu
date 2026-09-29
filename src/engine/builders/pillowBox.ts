@@ -28,17 +28,20 @@ const fields: FieldSpec[] = [
   { key: 'W', label: '枕厚 W', type: 'number', unit: 'mm', min: 8, max: 400, group: '尺寸' },
   { key: 'H', label: '枕高 H', type: 'number', unit: 'mm', min: 20, max: 600, group: '尺寸' },
   ...COMMON_FIELDS.filter((f) => f.key === 'material' || f.key === 't'),
+  { key: 'flapGap', label: '端翼深度修正', type: 'number', unit: 'mm', min: -20, max: 40, group: '工艺参数' },
+  { key: 'handleW', label: '翼形饱满度（0=自动）', type: 'number', unit: '%', min: 0, max: 90, group: '工艺参数' },
+  { key: 'winH', label: '端翼折入角（0=自动）', type: 'number', unit: '°', min: 0, max: 100, step: 0.2, group: '工艺参数' },
 ];
 
 /** 鱼形弧翼轮廓（多段折线近似弧，2D 实体与 3D 面板同源）：
- *  根边两端 → 翼缘 3 点（最深点在根边中线） */
-function wingPoly(edgeX: number, y0: number, y1: number, depth: number, dir: 1 | -1): [number, number][] {
+ *  根边两端 → 翼缘 3 点（最深点在根边中线）；sh = 翼形饱满度（翼肩相对翼深的比例） */
+function wingPoly(edgeX: number, y0: number, y1: number, depth: number, dir: 1 | -1, sh: number): [number, number][] {
   const H = y1 - y0;
   return [
     [edgeX, y0],
-    [edgeX + dir * 0.55 * depth, y0 + 0.08 * H],
+    [edgeX + dir * sh * depth, y0 + 0.08 * H],
     [edgeX + dir * depth, y0 + 0.5 * H],
-    [edgeX + dir * 0.55 * depth, y0 + 0.92 * H],
+    [edgeX + dir * sh * depth, y0 + 0.92 * H],
     [edgeX, y1],
   ].map(([x, y]) => [r3(x), r3(y)] as [number, number]);
 }
@@ -48,14 +51,19 @@ export const pillowBox = {
   name: '枕头盒（弧形模切）',
   category: '折叠纸盒（卡纸/彩盒）',
   fields,
+  // 卡纸礼品枕盒：薄壁、浅枕厚（0.6mm ≈ 300g 白卡）
+  sample: { sizeType: 'inner' as const, L: 200, W: 60, H: 100, material: 'custom', t: 0.6 },
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);
     const L = make.l;
     const W = make.w; // 枕厚（竖直）
     const H = make.h; // 枕高（上/下板各 H）
 
-    // 翼深：受枕厚限制（上翼向下折 Dw ≤ W 不穿地），同时别太深出格
-    const Dw = Math.min(W * 0.96, H * 0.85);
+    // 翼深：受枕厚限制（上翼向下折 Dw ≤ W 不穿地），同时别太深出格；
+    // 工艺参数：flapGap = 翼深修正，handleW = 翼形饱满度（0=自动 55%），winH = 端翼折入角（0=自动 90°）
+    const Dw = Math.max(Math.min(W * 0.96, H * 0.85) + p.flapGap, 4);
+    const sh = p.handleW > 0 ? p.handleW / 100 : 0.55;
+    const foldDeg = p.winH > 0 ? p.winH : 90;
 
     // 2D 布局（y-down）：上板 [0,H] + 棱条 [H,H+W] + 下板 [H+W,2H+W]，x ∈ [0,L]
     const TH = 2 * H + W;
@@ -74,10 +82,10 @@ export const pillowBox = {
     // 上边 → 右上翼 → 棱条右缘 → 右下翼 → 下边 → 左下翼 → 棱条左缘 → 左上翼
     c.line('cut', 0, 0, L, 0);
     c.line('cut', L, TH, 0, TH);
-    const upR = wingPoly(L, 0, H, Dw, 1);
-    const upL = wingPoly(0, 0, H, Dw, -1);
-    const dnR = wingPoly(L, H + W, TH, Dw, 1);
-    const dnL = wingPoly(0, H + W, TH, Dw, -1);
+    const upR = wingPoly(L, 0, H, Dw, 1, sh);
+    const upL = wingPoly(0, 0, H, Dw, -1, sh);
+    const dnR = wingPoly(L, H + W, TH, Dw, 1, sh);
+    const dnL = wingPoly(0, H + W, TH, Dw, -1, sh);
     for (const w of [upR, dnR, dnL, upL]) c.polyline('cut', w);
     c.line('cut', L, H, L, H + W); // 棱条右缘
     c.line('cut', 0, H, 0, H + W); // 棱条左缘
@@ -104,12 +112,12 @@ export const pillowBox = {
     const upper = mk('upper', rect(0, 0, L, H), { kind: 'h', at: H, sign: 1 }, 90, 0.4);
     // 上翼：挂上板，v 折 sign 用正常几何值（左 +1 / 右 -1）——
     // 父链棱条+上板两级 Rx(-90) 复合 Rx(-180)，把局部"向上立"翻转为世界系"向下折入盒内"；
-    // 89.4° 与下翼 90.6° 错层避免端面共面 z-fighting
-    const upWingL = mk('up-wing-l', upL, { kind: 'v', at: 0, sign: 1 }, 89.4, 0.74);
-    const upWingR = mk('up-wing-r', upR, { kind: 'v', at: L, sign: -1 }, 89.4, 0.74);
-    // 下翼：挂下板，v 折正常方向（左 +1 / 右 -1）向上立起；90.6° 多折错层
-    const dnWingL = mk('dn-wing-l', dnL, { kind: 'v', at: 0, sign: 1 }, 90.6, 0.74);
-    const dnWingR = mk('dn-wing-r', dnR, { kind: 'v', at: L, sign: -1 }, 90.6, 0.74);
+    // 上翼 −0.6°、下翼 +0.6° 错层避免端面共面 z-fighting
+    const upWingL = mk('up-wing-l', upL, { kind: 'v', at: 0, sign: 1 }, foldDeg - 0.6, 0.74);
+    const upWingR = mk('up-wing-r', upR, { kind: 'v', at: L, sign: -1 }, foldDeg - 0.6, 0.74);
+    // 下翼：挂下板，v 折正常方向（左 +1 / 右 -1）向上立起；多折 0.6° 错层
+    const dnWingL = mk('dn-wing-l', dnL, { kind: 'v', at: 0, sign: 1 }, foldDeg + 0.6, 0.74);
+    const dnWingR = mk('dn-wing-r', dnR, { kind: 'v', at: L, sign: -1 }, foldDeg + 0.6, 0.74);
 
     spine.children.push(upper);
     upper.children.push(upWingL, upWingR);
@@ -125,6 +133,8 @@ export const pillowBox = {
     if (p.t < 0.2 || p.t > 10) warnings.push('纸厚超出常规范围 0.2~10mm');
     if (W < 12) warnings.push('枕厚 < 12mm，两端翼难叠住，建议加厚');
     if (Dw <= W / 2) warnings.push('枕高偏小导致翼深不足（≤ 厚度一半），端部锁不住，建议加大枕高');
+    if (Dw > W) warnings.push('端翼深度大于枕厚，合盖时上翼会顶地，建议减小修正量');
+    if (p.handleW > 0 && sh < 0.35) warnings.push('翼形过瘦（饱满度 < 35%），端面中间会留缝');
     if (L < 60) warnings.push('枕长过短，外形比例不协调');
 
     return {

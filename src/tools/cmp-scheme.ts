@@ -3,8 +3,8 @@
  * 用法：npx --yes tsx src/tools/cmp-scheme.ts <builderId> <scheme.json>
  */
 import fs from 'node:fs';
-import { REGISTRY } from '../engine/registry';
-import { DEFAULT_PARAMS, BoxParams } from '../engine/params';
+import { REGISTRY, boxDefaults } from '../engine/registry';
+import { BoxParams } from '../engine/params';
 import { Entity } from '../engine/types';
 
 const [boxId, jsonPath, basis] = process.argv.slice(2);
@@ -25,8 +25,9 @@ const refEnts = ref.geometry.payload.entities as { type: string; lineType: strin
 /** 从参考样版自带的参数表取尺寸与纸厚（内尺寸语义），缺省回退 400×300×100 / t=3 */
 const rp = (ref.parameters ?? []) as { name: string; value: number; role: string | null }[];
 const num = (role: string, fallback: number) => rp.find((x) => x.role === role)?.value ?? fallback;
+// 基准取该盒型推荐参数（工艺参数的样版值即由此提供），尺寸/纸厚用样版实际值
 const params: BoxParams = {
-  ...DEFAULT_PARAMS,
+  ...boxDefaults(boxId),
   sizeType: basis === 'make' ? 'make' : 'inner',
   L: num('length', 400),
   W: num('width', 300),

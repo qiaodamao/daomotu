@@ -58,6 +58,7 @@ export const cakeBox = {
   id: 'cake-box',
   name: '提手飞机盒（蛋糕·外卖）',
   category: '快递 / 电商',
+  sample: { sizeType: 'inner' as const, L: 300, W: 300, H: 120, material: 'E', t: 2 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);

@@ -12,7 +12,8 @@
  *   Hf = H + 2k      前后壁高            Hs = H + k     外侧壁高
  *   Hi = H - k       内壁高             dbw = 8k       条带宽
  *   T1 = 4k          锁舌凸出            e = 3k         花瓣折线内缩
- *   A / mth / Ra / H7 / R3 / R10 / 锁槽 / 各斜切角 = 固定设计值（不随尺寸缩放）
+ *   A / mth / Ra / R3 / R10 / 各斜切角 = 固定设计值（不随尺寸缩放）
+ *   盖耳外伸 H7、锁槽长 SLOT = 工艺参数（面板可编辑，样版值 50 / 33）
  */
 import { BoxParams, toMakeSize, COMMON_FIELDS, FieldSpec } from '../params';
 import { bbox, DielineResult, Entity, Layer, PanelNode, r3 } from '../types';
@@ -22,10 +23,8 @@ import { EntCollector } from './shared';
 const A = 20; // 锁槽宽 / 盖耳根部内缩
 const MTH = 20; // 插舌端部收边
 const RA = 20; // 花瓣小圆角半径
-const H7 = 50; // 盖侧耳外伸
 const R3 = 3; // 微圆角（亦为花瓣弧与舌端边的工艺间隙）
 const R10 = 10; // 盖耳角圆角 / 插舌端部缺口
-const SLOT = 33; // 锁槽长
 const SLOT_OFF = 37; // 锁槽近盖端距底板边
 const FLAP_DROP = 15; // 角翼外角下沉
 const CREASE_GAP = 1; // 角翼折线端部与切线留空（避免刀锋重合）
@@ -97,14 +96,21 @@ function arcPts(c: P, r: number, a0: number, a1: number, n: number): [number, nu
   return out;
 }
 
-const fields: FieldSpec[] = COMMON_FIELDS.filter((f) =>
-  f.key === 'sizeType' || f.key === 'L' || f.key === 'W' || f.key === 'H' || f.key === 'material' || f.key === 't'
-);
+const fields: FieldSpec[] = [
+  ...COMMON_FIELDS.filter((f) =>
+    f.key === 'sizeType' || f.key === 'L' || f.key === 'W' || f.key === 'H' || f.key === 'material' || f.key === 't'
+  ),
+  // 免胶双层扣无糊口、无摇盖，可调配的是这两个结构量（字段名沿用通用参数，含义以 label 为准）
+  { key: 'lidH', label: '盖侧耳外伸', type: 'number', unit: 'mm', min: 20, max: 90, group: '工艺参数' },
+  { key: 'slot', label: '底板锁槽长度', type: 'number', unit: 'mm', min: 12, max: 60, group: '工艺参数' },
+];
 
 export const fefco427Std = {
   id: 'fefco-427-std',
   name: '一体式飞机盒（免胶双层扣）',
   category: '快递 / 电商',
+  /** 推荐尺寸：扁平时装飞机盒最典型（400×300×100 + 盖耳 50 / 锁槽 33 即参考刀版样版参数） */
+  sample: { sizeType: 'inner' as const, L: 400, W: 300, H: 100, material: 'B', t: 3, lidH: 50, slot: 33 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);
@@ -116,6 +122,10 @@ export const fefco427Std = {
     const B1 = B + 7 * k, B2 = B + 10 * k, B4 = B;
     const Hf = H + 2 * k, Hs = H + k, Hi = Math.max(H - k, 5);
     const dbw = 8 * k, T1 = 4 * k, e = 3 * k;
+
+    // 工艺参数（面板可编辑，推荐值即参考样版标定值）：lidH = 盖耳外伸(50)，slot = 底板锁槽长(33)
+    const H7 = Math.max(p.lidH, 2 * R10);
+    const SLOT = Math.max(p.slot, 8);
 
     // 关键坐标（基准 = 底板中心，y 向下）
     const x199 = L1 / 2 - A, x209 = L2 / 2, x213 = L1 / 2 - e, x219 = L1 / 2;

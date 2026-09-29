@@ -16,6 +16,7 @@ export const onePageBox = {
   id: 'one-page-box',
   name: '一页箱（免胶·无糊口）',
   category: '快递 / 电商',
+  sample: { sizeType: 'inner' as const, L: 350, W: 250, H: 80, material: 'E', t: 2 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);

@@ -16,6 +16,7 @@ export const mailerDouble = {
   id: 'mailer-double',
   name: '双联飞机盒（一版两件）',
   category: '快递 / 电商',
+  sample: { sizeType: 'inner' as const, L: 250, W: 180, H: 50, material: 'E', t: 2 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);

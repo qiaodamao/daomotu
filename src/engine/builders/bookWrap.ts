@@ -23,6 +23,7 @@ export const bookWrap = {
   id: 'book-wrap-mailer',
   name: '信封盒（书籍邮寄·免胶）',
   category: '快递 / 电商',
+  sample: { sizeType: 'inner' as const, L: 250, W: 180, H: 40, material: 'E', t: 2 },
   fields,
   build(p: BoxParams): DielineResult {
     const make = toMakeSize(p);

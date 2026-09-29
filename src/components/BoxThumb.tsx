@@ -3,8 +3,7 @@
  * 宽度随容器自适应（CSS 定宽 100% + aspect-ratio），ResizeObserver 保持清晰
  */
 import { useEffect, useRef } from 'react';
-import { DEFAULT_PARAMS } from '../engine/params';
-import { getBuilder } from '../engine/registry';
+import { boxDefaults, getBuilder } from '../engine/registry';
 import { bbox } from '../engine/types';
 
 interface Props {
@@ -31,7 +30,7 @@ export function BoxThumb({ boxId, ratio = 1.6 }: Props) {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, w, h);
 
-      const result = getBuilder(boxId).build(DEFAULT_PARAMS);
+      const result = getBuilder(boxId).build(boxDefaults(boxId));
       const bb = bbox(result.entities);
       const bw = Math.max(bb.max.x - bb.min.x, 1);
       const bh = Math.max(bb.max.y - bb.min.y, 1);

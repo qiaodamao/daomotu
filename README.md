@@ -132,6 +132,7 @@ public/                 图标、logo
      name: '你的盒型',
      category: '折叠纸盒（卡纸/彩盒）',
      fields,                       // 参数面板字段（可复用 COMMON_FIELDS 过滤/追加）
+     sample: { sizeType: 'inner', L: 400, W: 300, H: 100, material: 'B', t: 3 }, // 可选：本盒型推荐尺寸
      build(p: BoxParams): DielineResult {
        const make = toMakeSize(p); // 尺寸换算
        const c = new EntCollector();
@@ -146,6 +147,10 @@ public/                 图标、logo
 2. 在 `src/engine/registry.ts` 中 `import` 并加入 `REGISTRY` 数组对应分类。
 
 3. 完成 —— 落地页盒型库、编辑器、缩略图、导出均自动接入（无硬编码盒型数量）。
+
+`sample`（可选）= 该盒型的推荐尺寸：直达链接 `/editor?box=xx`、落地页卡片进入、缩略图、以及"用户还没改过参数"时切换盒型都会套用；一旦改过参数，切换盒型保留用户数值，`⟲ 复位` 恢复当前盒型的推荐尺寸。只声明与全局 `DEFAULT_PARAMS` 不同的字段（飞机盒/托盘这类扁平结构必须给扁样本，否则用全局默认的高箱尺寸会画出畸形展开图）。URL 里也据此只写差异，推荐尺寸下链接仍干净。
+
+工艺参数（`group: '工艺参数'`）不新增 `BoxParams` 字段，而是复用已有的通用键、按盒型改 `label`：`flapGap` 可取负（修正/间隙类）、`winW`/`winH`/`handleW` 约定 **0 = 自动**（沿用行业公式值，写进注释）、`handleH`/`lidH`/`slot`/`tongue`/`clearance` 直接当尺寸用。凡是"参考刀版标定值 ≠ 全局默认"的键，必须同时写进 `sample`，否则样版复现会漂。
 
 坐标约定：单位 mm、Canvas 系 y 轴向下，导出 DXF 时统一翻转为 CAD 的 y-up；内部全精度浮点，导出保留 3 位小数。
 
