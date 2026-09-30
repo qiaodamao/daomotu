@@ -56,6 +56,8 @@ button:active {
   display: flex;
   flex-direction: column;
   height: 100%;
+  /* dvh = 手机浏览器地址栏让开后的真实可视高度；用 100%/vh 会把底栏顶到折叠线以下 */
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -720,15 +722,22 @@ button:active {
   }
   .main {
     flex-direction: column;
+    /* 极矮视口下两块各有 120px 下限，加兜底滚动，保证 side 永远能露出来 */
+    overflow-y: auto;
   }
+  /* 画布与 side 按可用高度定比分配（旧写法 min-height:240px + max-height:44vh
+     两个固定值相加会超出 .main，矮屏上 side 被顶到折叠线以下看不见） */
   .canvas-wrap {
     order: 1;
-    min-height: 240px;
+    flex: 1 1 46%;
+    min-height: 120px;
   }
   .side {
     order: 2;
+    flex: 1 1 54%;
+    min-height: 120px;
     width: 100%;
-    max-height: 44vh;
+    max-height: none;
     border-right: none;
     border-top: 1px solid var(--hairline);
   }
