@@ -128,9 +128,47 @@ button:active {
 .spacer {
   flex: 1;
 }
+/* 工具栏：六个动作统一收成一条浅灰胶囊 + 纯图标（顶栏横向很挤，文字按钮一排太吵）。
+   桌面端收小一档，移动端在 @media 里恢复 44×40 触控尺寸并占满第二行 */
 .tools {
   display: flex;
-  gap: 6px;
+  gap: 10px;
+  padding: 2px 10px; /* 两端内衬 10px（与按钮间距同值，上下仍 2px 保持 32px 等高） */
+  background: var(--hairline-soft);
+  border-radius: 9999px; /* PC 端收成胶囊（移动端在 @media 里保持 10px 方圆角） */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tools::-webkit-scrollbar {
+  display: none;
+}
+.tools .btn {
+  /* PC 端正圆按钮：28×28 + 上下 2px 内边距 = 32px，与顶栏其他控件（盒型下拉、下载）等高 */
+  width: 28px;
+  height: 28px;
+  gap: 0;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--body);
+}
+.tools .btn:hover {
+  background: var(--elevated);
+  border-color: transparent;
+}
+.tools .btn.active {
+  background: var(--ink);
+  border-color: transparent;
+  color: #fff;
+}
+.tools .btn-ico {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+.tools .btn-lbl {
+  display: none;
 }
 
 /* 导出下拉（Level-2 floating：分层低透明阴影） */
@@ -232,6 +270,9 @@ button:active {
   border-color: var(--ink);
   color: #fff;
   min-width: 64px;
+  /* 胶囊：与首页顶部「进入编辑器」按钮同一语言 */
+  border-radius: 9999px;
+  padding: 0 16px;
 }
 .btn.primary:hover {
   background: #333;
@@ -554,7 +595,7 @@ button:active {
 .view-tabs {
   display: flex;
   border: 1px solid var(--hairline);
-  border-radius: 6px;
+  border-radius: 9999px;
   overflow: hidden;
   background: var(--elevated);
 }
@@ -681,46 +722,20 @@ button:active {
   .tools {
     order: 5; /* 换到第二行 */
     flex-basis: 100%;
-    gap: 2px;
-    padding: 2px;
+    gap: 2px; /* 移动端维持原来的紧凑间距（加间距只针对 PC） */
+    padding: 2px; /* 移动端内衬也保持原值 */
     justify-content: space-between;
-    /* 浅灰底把六个图标收成一条工具栏，避免一眼全是独立按钮 */
-    background: var(--hairline-soft);
     border-radius: 10px;
-    overflow-x: auto;
-    scrollbar-width: none;
   }
-  .tools::-webkit-scrollbar {
-    display: none;
-  }
-  /* 移动端工具按钮：只留图标，去边框 ghost 态，同尺寸方框；开关态仍靠黑底区分 */
+  /* 移动端保持原样：恢复触控尺寸 + 8px 圆角（胶囊圆角只用于 PC 端） */
   .tools .btn {
     width: 44px;
     height: 40px;
-    padding: 0;
-    border: none;
     border-radius: 8px;
-    background: transparent;
-    color: var(--body);
-  }
-  .tools .btn:hover {
-    background: var(--elevated);
-    border-color: transparent;
-  }
-  .tools .btn.active {
-    background: var(--ink);
-    border-color: transparent;
-    color: #fff;
   }
   .tools .btn-ico {
     width: 18px;
     height: 18px;
-  }
-  .btn-ico {
-    display: block;
-  }
-  .btn-lbl {
-    display: none;
   }
   .btn {
     height: 38px; /* 触控目标加大（下载主按钮） */
