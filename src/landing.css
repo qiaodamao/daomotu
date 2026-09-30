@@ -78,8 +78,9 @@
 .gnav-cta {
   background: var(--ink);
   color: #fff;
-  border-radius: 6px;
-  padding: 6px 12px;
+  /* 胶囊圆角：6px 在深色小按钮上几乎看不出来 */
+  border-radius: 9999px;
+  padding: 6px 16px;
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -314,7 +315,9 @@
 }
 .flow-list li {
   display: flex;
-  align-items: flex-start;
+  /* 序号圆片与「标题+说明」整块文字垂直居中：说明在手机上会折到两三行，
+     顶部对齐会让数字看着贴在标题上、整行偏上 */
+  align-items: center;
   gap: 20px;
   padding: 24px 0;
   border-bottom: 1px solid var(--hairline);
@@ -338,7 +341,7 @@
   justify-content: center;
 }
 .flow-list h3 {
-  margin: 8px 0 4px;
+  margin: 0 0 6px;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.4px;

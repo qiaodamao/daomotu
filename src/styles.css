@@ -587,6 +587,15 @@ button:active {
 .three-mount {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+}
+/* WebGL canvas 的固有尺寸＝像素缓冲尺寸（渲染器按 devicePixelRatio 放大过），
+   不加 CSS 约束就会按 dpr 倍（手机 3 倍）溢出、盖住下方的参数面板；
+   这里让显示尺寸始终跟住容器，渲染器只管缓冲精度 */
+.three-mount canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .three-loading {
   position: absolute;

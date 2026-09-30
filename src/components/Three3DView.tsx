@@ -77,6 +77,7 @@ export function Three3DView({ result }: { result: DielineResult }) {
     const resize = () => {
       const w = mount.clientWidth || 1;
       const h = mount.clientHeight || 1;
+      // updateStyle=false：显示尺寸交给 CSS（100% 跟随容器），这里只设像素缓冲
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
