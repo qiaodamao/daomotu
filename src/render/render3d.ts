@@ -192,6 +192,28 @@ export function groundModel(model: PanelModel): THREE.Box3 {
   return box;
 }
 
+/**
+ * 网格居中：把整个模型刚体平移，使闭合态包围盒中心落到地面网格原点（x/z）。
+ * 必要性：面板顶点用的就是刀版 2D 坐标（画图原点在图边上），不平移的话盒子会
+ * 偏出网格中心一整个盒身。只动 root，不碰铰链相对关系，也不动 y（贴地交给 groundModel）。
+ * 多部件盒按"所有部件合起来"居中，部件之间保持原有并排关系。
+ * 可重复调用（每次先清零再量）。
+ */
+export function centerOnGrid(model: PanelModel): void {
+  model.root.position.set(0, 0, 0);
+  applyFold(model, 1); // 按成型态量：展开态悬出的摇盖/插舌不计入
+  model.root.updateMatrixWorld(true);
+  const box = new THREE.Box3();
+  for (const { group: roller } of model.rollers) {
+    const b = new THREE.Box3().setFromObject(roller);
+    if (isFinite(b.min.x)) box.union(b);
+  }
+  if (box.isEmpty()) return;
+  const c = box.getCenter(new THREE.Vector3());
+  model.root.position.set(-c.x, 0, -c.z);
+  model.root.updateMatrixWorld(true);
+}
+
 /** 成型态（已落地）包围盒（相机 fit 用） */
 export function foldedBox(model: PanelModel): THREE.Box3 {
   applyFold(model, 1);

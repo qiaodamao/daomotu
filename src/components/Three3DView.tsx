@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { DielineResult } from '../engine/types';
-import { applyFold, buildPanelTreeObject, disposeTree, foldedBox, groundModel, PanelModel } from '../render/render3d';
+import { applyFold, buildPanelTreeObject, centerOnGrid, disposeTree, foldedBox, groundModel, PanelModel } from '../render/render3d';
 
 /** 展开闭合动画时长（ms）：分阶段顺序折叠需要足够时长看清波次推进 */
 const ANIM_DUR = 2200;
@@ -134,6 +134,8 @@ export function Three3DView({ result }: { result: DielineResult }) {
       disposeTree(s.model.root);
     }
     const model = buildPanelTreeObject(result.panels);
+    // 刀版坐标原点在图边上，不平移的话盒子会偏出网格中心一整个盒身
+    centerOnGrid(model);
     s.scene.add(model.root);
     s.model = model;
 
